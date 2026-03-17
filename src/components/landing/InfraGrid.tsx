@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Globe, Server, Shield, Terminal, Cpu, Lock } from "lucide-react";
 
-const ease = [0.2, 0, 0, 1];
+const ease = [0.2, 0, 0, 1] as const;
 
 const regions = [
   { name: "US East", location: "Virginia", latency: "8ms", status: "operational" },
