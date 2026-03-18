@@ -127,9 +127,11 @@ const Plans = () => {
                     </li>
                   ))}
                 </ul>
-                <Button variant={plan.popular ? "hero" : "heroOutline"} className="w-full">
-                  Assinar Agora
-                </Button>
+                <a href="https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Button variant={plan.popular ? "hero" : "heroOutline"} className="w-full">
+                    Assinar Agora
+                  </Button>
+                </a>
               </motion.div>
             ))}
           </div>

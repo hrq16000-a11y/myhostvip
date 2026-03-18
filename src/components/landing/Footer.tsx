@@ -16,10 +16,10 @@ const footerLinks = {
     { label: "Programa de Afiliados", href: "/afiliados" },
   ],
   Empresa: [
-    { label: "Sobre Nós", href: "#" },
+    { label: "Sobre Nós", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
     { label: "Contato", href: "/contato" },
-    { label: "Termos de Uso", href: "#" },
-    { label: "Política de Privacidade", href: "#" },
+    { label: "Termos de Uso", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
+    { label: "Política de Privacidade", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
   ],
 };
 
