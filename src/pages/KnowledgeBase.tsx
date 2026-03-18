@@ -111,7 +111,7 @@ const KnowledgeBase = () => {
                 <ul className="space-y-2">
                   {cat.articles.map((article) => (
                     <li key={article}>
-                      <a href="#" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group py-1">
+                      <a href="https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group py-1">
                         <ChevronRight className="h-3 w-3 text-primary group-hover:translate-x-0.5 transition-transform" />
                         {article}
                       </a>

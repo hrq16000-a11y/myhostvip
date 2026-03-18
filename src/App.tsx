@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 
 const Plans = lazy(() => import("./pages/Plans"));
 const SiteBuilder = lazy(() => import("./pages/SiteBuilder"));
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/contato" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppFloat />
         </Suspense>
       </BrowserRouter>
     </TooltipProvider>
