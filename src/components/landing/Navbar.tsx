@@ -23,11 +23,8 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="section-container h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-            <Server className="h-4 w-4 text-primary-foreground" />
-          </div>
-          <span className="text-base font-bold tracking-tight text-foreground">MyHostVIP</span>
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="MyHostVIP" className="h-9" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">

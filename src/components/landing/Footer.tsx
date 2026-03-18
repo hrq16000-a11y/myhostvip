@@ -35,11 +35,8 @@ const Footer = () => {
       <div className="section-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                <Server className="h-4 w-4 text-primary-foreground" />
-              </div>
-              <span className="text-base font-bold tracking-tight text-foreground">MyHostVIP</span>
+            <Link to="/" className="flex items-center mb-4">
+              <img src={logo} alt="MyHostVIP" className="h-9" />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
               Hospedagem profissional com performance SSD, LiteSpeed e suporte WordPress completo.
