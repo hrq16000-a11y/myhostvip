@@ -47,10 +47,29 @@ const Hero = () => {
           ilimitadas
         </motion.h1>
 
+        {/* Pricing highlight */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.15, ease }}
+          className="mb-8 inline-flex flex-col items-center"
+        >
+          <div className="gradient-border rounded-2xl bg-card p-6 text-center">
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Plano Starter</p>
+            <div className="flex items-baseline justify-center gap-1">
+              <span className="text-sm text-muted-foreground">a partir de</span>
+              <span className="text-lg text-muted-foreground ml-1">R$</span>
+              <span className="text-5xl font-extrabold gradient-text">4,99</span>
+              <span className="text-sm text-muted-foreground">/mês</span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">Landing pages ilimitadas · WordPress · SSL grátis</p>
+          </div>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease }}
+          transition={{ duration: 0.6, delay: 0.25, ease }}
           className="text-body max-w-2xl mx-auto mb-10"
         >
           Crie sites profissionais em minutos, com WordPress e hospedagem
