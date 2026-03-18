@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Server, Shield, Lock, Zap } from "lucide-react";
+import { Shield, Lock, Zap } from "lucide-react";
+import logo from "@/assets/logo-myhostvip.png";
 
 const footerLinks = {
   Hospedagem: [
