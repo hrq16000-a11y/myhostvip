@@ -32,7 +32,7 @@ const Hero = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/80 text-muted-foreground text-xs font-medium tracking-tight">
             <span className="status-pip" />
-            🔥 Oferta limitada — Hospedagem a partir de R$4,99/mês
+            🔥 Oferta limitada — Plano Starter a partir de R$4,99/mês
           </div>
         </motion.div>
 
