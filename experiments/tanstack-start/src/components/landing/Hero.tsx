@@ -43,8 +43,7 @@ const Hero = () => {
           className="text-display mb-6"
         >
           Hospedagem rápida e poderosa para criar{" "}
-          <span className="gradient-text">sites e landing pages</span>{" "}
-          ilimitadas
+          <span className="gradient-text">sites e landing pages</span>
         </motion.h1>
 
         {/* Pricing highlight */}
@@ -57,7 +56,7 @@ const Hero = () => {
           <div className="gradient-border rounded-2xl bg-card p-6 text-center">
             <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Preço de referência · Starter</p>
             <div className="flex items-baseline justify-center gap-1">
-              <span className="text-sm text-muted-foreground">a partir de</span>
+              <span className="text-sm text-muted-foreground">ref. antiga</span>
               <span className="text-lg text-muted-foreground ml-1">R$</span>
               <span className="text-5xl font-extrabold gradient-text">4,99</span>
               <span className="text-sm text-muted-foreground">/mês*</span>
