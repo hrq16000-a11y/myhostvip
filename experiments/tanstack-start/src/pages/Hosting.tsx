@@ -8,25 +8,25 @@ import { Server, HardDrive, Shield, Zap, Lock, Globe, Cpu, Database } from "luci
 const ease = [0.2, 0, 0, 1] as const;
 
 const infraFeatures = [
-  { icon: HardDrive, title: "Servidor SSD NVMe", desc: "Armazenamento de alta velocidade com leituras de até 3.500 MB/s para máxima performance." },
-  { icon: Zap, title: "LiteSpeed Web Server", desc: "O servidor web mais rápido do mercado, até 12x mais veloz que Apache com cache integrado." },
-  { icon: Globe, title: "HTTP/3 + QUIC", desc: "Protocolo de última geração para conexões mais rápidas e seguras." },
-  { icon: Cpu, title: "CloudLinux", desc: "Isolamento de recursos por conta, garantindo estabilidade mesmo em hospedagem compartilhada." },
-  { icon: Shield, title: "Proteção Anti-DDoS", desc: "Firewall avançado que detecta e bloqueia ataques em tempo real." },
-  { icon: Lock, title: "Firewall de Aplicação (WAF)", desc: "Proteção contra SQL injection, XSS e outras vulnerabilidades web." },
-  { icon: Database, title: "MySQL + MariaDB", desc: "Bancos de dados otimizados para WordPress e aplicações PHP." },
-  { icon: Server, title: "Backups Automáticos", desc: "Backups regulares com restauração em 1 clique. Seus dados sempre seguros." },
+  { icon: HardDrive, title: "Servidor SSD NVMe", desc: "Consulte tecnologia, capacidade e medições reais do armazenamento da oferta." },
+  { icon: Zap, title: "LiteSpeed Web Server", desc: "Pergunte qual servidor HTTP e quais configurações de cache estão disponíveis." },
+  { icon: Globe, title: "HTTP/3 + QUIC", desc: "Confirme se o servidor e o domínio oferecem HTTP/3 e QUIC." },
+  { icon: Cpu, title: "CloudLinux", desc: "Verifique as políticas de isolamento e os limites de cada conta." },
+  { icon: Shield, title: "Proteção Anti-DDoS", desc: "Consulte medidas efetivas de mitigação e limitações de proteção." },
+  { icon: Lock, title: "Firewall de Aplicação (WAF)", desc: "Confirme a existência e a configuração de WAF no servidor escolhido." },
+  { icon: Database, title: "MySQL + MariaDB", desc: "Verifique versões, cotas e tecnologias de banco de dados suportadas." },
+  { icon: Server, title: "Backups Automáticos", desc: "Solicite periodicidade, retenção, responsabilidade e procedimento de restauração." },
 ];
 
 const techSpecs = [
-  { label: "PHP", value: "8.0, 8.1, 8.2, 8.3+" },
-  { label: "MySQL", value: "8.0" },
-  { label: "MariaDB", value: "10.6+" },
-  { label: "LiteSpeed", value: "6.x Enterprise" },
-  { label: "CloudLinux", value: "8.x" },
-  { label: "SSL", value: "Let's Encrypt Auto" },
-  { label: "Softaculous", value: "400+ apps" },
-  { label: "cPanel", value: "Última versão" },
+  { label: "PHP", value: "Consulte versões mantidas" },
+  { label: "MySQL", value: "Consulte a versão" },
+  { label: "MariaDB", value: "Consulte a versão" },
+  { label: "LiteSpeed", value: "Consulte a edição" },
+  { label: "CloudLinux", value: "Consulte a versão" },
+  { label: "SSL", value: "Consulte emissão e renovação" },
+  { label: "Softaculous", value: "Consulte catálogo" },
+  { label: "cPanel", value: "Consulte versão e licença" },
 ];
 
 const Hosting = () => {
@@ -46,7 +46,7 @@ const Hosting = () => {
               Hospedagem <span className="gradient-text">profissional</span> de verdade
             </h1>
             <p className="text-body max-w-2xl mx-auto mb-8">
-              Infraestrutura enterprise com SSD NVMe, LiteSpeed, CloudLinux e segurança avançada.
+              Confira as características técnicas oferecidas no plano escolhido. Os detalhes variam conforme a contratação.
             </p>
             <Link to="/planos">
               <Button variant="hero" size="lg">Ver Planos</Button>
@@ -80,7 +80,8 @@ const Hosting = () => {
             transition={{ duration: 0.6, ease }}
             className="card-vip p-8 max-w-3xl mx-auto"
           >
-            <h2 className="text-xl font-bold text-foreground mb-6 text-center">Especificações Técnicas</h2>
+            <h2 className="text-xl font-bold text-foreground mb-3 text-center">Especificações a confirmar</h2>
+            <p className="text-sm text-muted-foreground text-center mb-6">As versões abaixo são referências históricas da apresentação do projeto; confirme disponibilidade e suporte antes de contratar.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {techSpecs.map((s) => (
                 <div key={s.label} className="flex items-center justify-between py-3 border-b border-border last:border-0">
