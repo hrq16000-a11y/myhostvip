@@ -37,6 +37,12 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Compare navigation, text and screenshot both versions
         run: npx playwright test --config experiments/tanstack-start/playwright.visual.config.ts
+      - name: Install image comparison dependency in isolated environment
+        run: |
+          python3 -m venv /tmp/myhostvip-visual-venv
+          /tmp/myhostvip-visual-venv/bin/python -m pip install --quiet Pillow==11.3.0
+      - name: Compare screenshots pixel by pixel (max 5% visual difference)
+        run: /tmp/myhostvip-visual-venv/bin/python experiments/tanstack-start/scripts/check_pixel_diff.py
       - name: Upload screenshots and trace report
         if: always()
         uses: actions/upload-artifact@v4
