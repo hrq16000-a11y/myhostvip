@@ -28,7 +28,7 @@ const routes = [
   ['/planos', 'Planos de Hospedagem | MyHostVIP', 'Hospedagem para'],
   ['/hospedagem', 'Hospedagem de Sites | MyHostVIP', 'Hospedagem profissional'],
   ['/criador-de-sites', 'Criador de Sites | MyHostVIP', 'Crie sites'],
-  ['/recursos', 'Recursos de Hospedagem | MyHostVIP', 'Todos os'],
+  ['/recursos', 'Recursos de Hospedagem | MyHostVIP', 'Recursos para'],
   ['/templates', 'Templates para Sites | MyHostVIP', 'Ideias de'],
   ['/afiliados', 'Parcerias e Indicações | MyHostVIP', 'Conheça possibilidades'],
   ['/blog', 'Blog de Hospedagem e Sites | MyHostVIP', 'Dicas e'],
