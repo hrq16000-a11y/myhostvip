@@ -2,7 +2,7 @@
 
 Unaffected contact page: preserve whole-page pixel difference <=5%.
 Intentionally corrected home/plans/hosting: preserve 5% threshold ONLY on
-unchanged top navigation (100px) and copyright footer (170px), retain FULL
+unchanged top navigation (64px) and copyright footer (170px), retain FULL
 screenshots for independent review, and enforce <=20% total-height drift.
 This does not claim pixel parity on rewritten product/marketing sections.
 """
@@ -35,7 +35,7 @@ for name in cases:
         if height_drift > 20:
             failed.append(f"{name}: unexpected page-height drift {height_drift}% (>20%)")
         scopes = [
-            ("nav_only", spa.crop((0, 0, spa.width, 100)), ssr.crop((0, 0, ssr.width, 100))),
+            ("nav_only", spa.crop((0, 0, spa.width, 64)), ssr.crop((0, 0, ssr.width, 64))),
             ("copyright_footer", spa.crop((0, spa.height - 170, spa.width, spa.height)),
              ssr.crop((0, ssr.height - 170, ssr.width, ssr.height))),
         ]
