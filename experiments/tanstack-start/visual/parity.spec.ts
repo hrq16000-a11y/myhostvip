@@ -47,14 +47,25 @@ for (const path of pathnames) {
     try {
       const pages = await Promise.all(contexts.map(c => c.newPage()))
       const [spa, ssr] = await Promise.all(pages.map((p,i) => inspect(p, variants[i].origin, path, 'desktop')))
-      expect(ssr.h1).toBe(spa.h1)
+      if (path === '/') {
+        expect(ssr.h1).toContain('Hospedagem rápida e poderosa')
+        expect(ssr.h1).not.toContain('ilimitadas')
+      } else {
+        expect(ssr.h1).toContain('Hospedagem rápida e poderosa')
+      }
       expect(ssr.whatsapp).toBe(spa.whatsapp)
       expect(ssr.anchors).toEqual(spa.anchors)
-      if (path === '/planos' || path === '/hospedagem') {
-        expect(ssr.text).toBe(normalizePreviousFooter(spa.text))
+      if (path === '/planos') {
+        expect(ssr.text).toContain('confirmar')
+        expect(ssr.text).toContain('Consultar este plano')
+        expect(ssr.text).not.toContain('Garantia de 30 dias')
+      } else if (path === '/hospedagem') {
+        expect(ssr.text).toContain('Especificações a confirmar')
+        expect(ssr.text).not.toContain('3.500 MB/s')
       } else if (path === '/') {
         expect(ssr.text).toContain('O que avaliar antes de escolher uma hospedagem')
         expect(ssr.text).not.toContain('Carlos Silva')
+        expect(ssr.text).not.toContain('10K+')
       } else {
         expect(ssr.text).toContain('Continuar no WhatsApp')
         expect(ssr.text).toContain('Nada é enviado automaticamente')
@@ -74,5 +85,6 @@ test('Visual parity: homepage mobile', async ({ browser }) => {
     expect(ssr.anchors).toEqual(spa.anchors)
     expect(ssr.text).toContain('O que avaliar antes de escolher uma hospedagem')
     expect(ssr.text).not.toContain('Carlos Silva')
+    expect(ssr.text).not.toContain('10K+')
   } finally { await Promise.all(contexts.map(c => c.close())) }
 })
