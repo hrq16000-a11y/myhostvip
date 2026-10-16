@@ -4,6 +4,7 @@ import { routeTree } from './routeTree.gen'
 export function getRouter() {
   return createRouter({
     routeTree,
+    notFoundMode: 'root',
     scrollRestoration: true,
     defaultPreload: 'intent',
   })
