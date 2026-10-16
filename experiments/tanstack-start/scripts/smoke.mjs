@@ -7,43 +7,82 @@ const server = spawn(process.execPath, ['.output/server/index.mjs'], {
   env: { ...process.env, PORT: String(port), HOST: '127.0.0.1', NODE_ENV: 'production' },
   stdio: ['ignore', 'pipe', 'pipe'],
 })
-let log = ''
+let logs = ''
 for (const stream of [server.stdout, server.stderr]) {
-  stream.on('data', (chunk) => { log += chunk.toString() })
+  stream.on('data', (chunk) => { logs += chunk.toString() })
 }
-const response = async (path) => {
+
+const fetchRoute = async path => {
   const result = await fetch(origin + path)
-  return { status: result.status, html: await result.text() }
+  return { status: result.status, html: await result.text(), contentType: result.headers.get('content-type') }
 }
+
+const mainHeading = html => {
+  const match = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
+  assert(match, 'Nenhum h1 encontrado no HTML de resposta')
+  return match[1].replace(/<[^>]*>/g, ' ').replace(/&(?:nbsp|#160);/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+const routes = [
+  ['/', 'MyHostVIP - Hospedagem Rápida', 'Hospedagem rápida e poderosa para criar'],
+  ['/planos', 'Planos de Hospedagem | MyHostVIP', 'Hospedagem para'],
+  ['/hospedagem', 'Hospedagem de Sites | MyHostVIP', 'Hospedagem profissional'],
+  ['/criador-de-sites', 'Criador de Sites | MyHostVIP', 'Crie sites'],
+  ['/recursos', 'Recursos de Hospedagem | MyHostVIP', 'Todos os'],
+  ['/templates', 'Templates para Sites | MyHostVIP', 'Templates'],
+  ['/afiliados', 'Programa de Afiliados | MyHostVIP', 'Ganhe dinheiro'],
+  ['/blog', 'Blog de Hospedagem e Sites | MyHostVIP', 'Dicas e'],
+  ['/base-de-conhecimento', 'Base de Conhecimento | MyHostVIP', 'Base de'],
+  ['/contato', 'Contato | MyHostVIP', 'Fale'],
+]
+
 try {
   let ready = false
   for (let attempt = 0; attempt < 60; attempt++) {
-    if (server.exitCode !== null) throw new Error('Servidor finalizou: ' + log)
-    try { await response('/'); ready = true; break } catch { await new Promise(r => setTimeout(r, 500)) }
+    if (server.exitCode !== null) throw new Error('Servidor interrompido: ' + logs)
+    try { await fetchRoute('/'); ready = true; break } catch { await new Promise(r => setTimeout(r, 500)) }
   }
-  assert(ready, 'Servidor não respondeu: ' + log)
-  const home = await response('/')
-  assert.equal(home.status, 200)
-  assert.match(home.html, /Hospedagem rápida e poderosa para criar/)
-  assert.match(home.html, /Landing Pages Ilimitadas/)
-  assert.match(home.html, /Velocidade que faz diferença/)
-  assert.match(home.html, /O que nossos clientes dizem/)
-  assert.match(home.html, /Pronto para começar/)
-  assert.match(home.html, /Ver Planos/)
-  assert.match(home.html, /href="\/planos"/)
-  assert.match(home.html, /Fale conosco pelo WhatsApp/)
-  assert.match(home.html, /5541997452053/)
-  assert.match(home.html, /logo-myhostvip/)
-  assert.match(home.html, /noindex,nofollow/)
-  assert.match(home.html, /MyHostVIP - Hospedagem Rápida/)
-  const plans = await response('/planos')
-  assert.equal(plans.status, 200)
-  assert.match(plans.html, /Planos de hospedagem MyHostVIP/)
-  assert.match(plans.html, /noindex,nofollow/)
-  assert.match(plans.html, /Planos de Hospedagem/)
-  console.log('SSR OK: home real e WhatsApp, /planos, HTML e SEO de piloto.')
+  assert(ready, 'Servidor Nitro não iniciou: ' + logs)
+
+  const seenTitles = new Set()
+  for (const [pathname, expectedTitle, expectedHeading] of routes) {
+    const { status, html, contentType } = await fetchRoute(pathname)
+    assert.equal(status, 200, `Falha HTTP em ${pathname}`)
+    assert.match(contentType || '', /text\/html/, `Content-type inválido em ${pathname}`)
+    assert(html.includes('<title>') && html.includes(expectedTitle), `Head sem título exclusivo: ${pathname}`)
+    assert.match(html, /name="description"/, `Falta description para ${pathname}`)
+    assert.match(html, /noindex,nofollow/, `Preview indexável indevidamente: ${pathname}`)
+    assert(mainHeading(html).includes(expectedHeading), `H1 não renderizado em ${pathname}: ${mainHeading(html)}`)
+    assert(html.includes('logo-myhostvip'), `Logo original ausente em ${pathname}`)
+    assert(html.includes('5541997452053'), `WhatsApp original ausente em ${pathname}`)
+    assert(!seenTitles.has(expectedTitle), `Título duplicado: ${expectedTitle}`)
+    seenTitles.add(expectedTitle)
+    console.log(`SSR 200 ${pathname}: ${mainHeading(html)}`)
+  }
+
+  const home = (await fetchRoute('/')).html
+  for (const text of [
+    'Landing Pages Ilimitadas',
+    'Velocidade que faz diferença',
+    'O que nossos clientes dizem',
+    'Pronto para começar',
+    'Ver Planos',
+  ]) {
+    assert(home.includes(text), `Componente da home não renderizado: ${text}`)
+  }
+  assert.match(home, /href="\/planos"/)
+  assert.match(home, /Fale conosco pelo WhatsApp/)
+
+  const plans = (await fetchRoute('/planos')).html
+  assert(plans.includes('Starter') && plans.includes('Profissional') && plans.includes('Business'), 'Planos reais não foram migrados')
+  const contact = (await fetchRoute('/contato')).html
+  assert(contact.includes('Envie uma mensagem'), 'Conteúdo do contato original não foi migrado')
+
+  console.log(`PASSOU: ${routes.length} rotas SSR, titles/description únicos, navegação, WhatsApp e conteúdo.`)
 } catch (error) {
-  console.error('SSR FAILED:', error)
-  console.error(log.slice(-6000))
+  console.error('FALHA SSR:', error)
+  console.error(logs.slice(-6000))
   process.exitCode = 1
-} finally { server.kill('SIGTERM') }
+} finally {
+  server.kill('SIGTERM')
+}
