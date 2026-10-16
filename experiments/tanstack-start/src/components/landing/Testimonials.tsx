@@ -43,7 +43,7 @@ const Testimonials = () => {
             O que avaliar antes de escolher uma hospedagem
           </h2>
           <p className="text-body max-w-2xl mx-auto">
-            Critérios úteis para comparar ofertas, sem depoimentos atribuídos a clientes não verificados.
+            Critérios úteis para comparar ofertas, definir prioridades e escolher com mais segurança.
           </p>
         </motion.div>
 
