@@ -29,8 +29,8 @@ const routes = [
   ['/hospedagem', 'Hospedagem de Sites | MyHostVIP', 'Hospedagem profissional'],
   ['/criador-de-sites', 'Criador de Sites | MyHostVIP', 'Crie sites'],
   ['/recursos', 'Recursos de Hospedagem | MyHostVIP', 'Todos os'],
-  ['/templates', 'Templates para Sites | MyHostVIP', 'Templates'],
-  ['/afiliados', 'Programa de Afiliados | MyHostVIP', 'Ganhe dinheiro'],
+  ['/templates', 'Templates para Sites | MyHostVIP', 'Ideias de'],
+  ['/afiliados', 'Programa de Afiliados | MyHostVIP', 'Conheça possibilidades'],
   ['/blog', 'Blog de Hospedagem e Sites | MyHostVIP', 'Dicas e'],
   ['/base-de-conhecimento', 'Base de Conhecimento | MyHostVIP', 'Base de'],
   ['/contato', 'Contato | MyHostVIP', 'Fale'],
@@ -73,7 +73,7 @@ try {
 
   const home = (await fetchRoute('/')).html
   for (const text of [
-    'Landing Pages Ilimitadas',
+    'Landing Pages e limites',
     'Velocidade que faz diferença',
     'O que avaliar antes de escolher uma hospedagem',
     'Pronto para começar',
@@ -93,6 +93,22 @@ try {
   assert(blog.includes('em preparação') && !blog.includes('15 Mar 2026'), 'Blog ainda anuncia artigos sem publicação')
   assert(!home.includes('Carlos Silva'), 'Depoimento sem comprovação no HTML SSR')
   assert(!home.includes('00.000.000/0001-00'), 'CNPJ de exemplo não pode aparecer na produção')
+
+  const templates = (await fetchRoute('/templates')).html
+  assert(templates.includes('Exemplos de formatos') && !templates.includes('185 templates'), 'Templates sem catálogo verificado')
+  assert(templates.includes('Consultar modelos disponíveis'), 'CTA de templates deve levar à consulta')
+  const affiliates = (await fetchRoute('/afiliados')).html
+  assert(affiliates.includes('Consultar parcerias pelo WhatsApp') && !affiliates.includes('comissões recorrentes'), 'Afiliados promete benefícios não confirmados')
+  const knowledge = (await fetchRoute('/base-de-conhecimento')).html
+  assert(knowledge.includes('temas em preparação encontrados') && knowledge.includes('Buscar temas'), 'Base de conhecimento simula artigos prontos')
+  const hosting = (await fetchRoute('/hospedagem')).html
+  assert(hosting.includes('Especificações a confirmar') && !hosting.includes('3.500 MB/s') && !hosting.includes('12x mais veloz'), 'Hosting promete benchmarks sem medição')
+  const resources = (await fetchRoute('/recursos')).html
+  assert(resources.includes('recursos') && resources.includes('disponibilidade'), 'Recursos não deixam clara a necessidade de confirmação')
+  assert(plans.includes('Consultar este plano') && plans.includes('Preços') && !plans.includes('Assinar Agora'), 'CTA/preços induzem assinatura ou garantia imediata')
+  assert(!plans.includes('Garantia de 30 dias') && !home.includes('10K+') && !home.includes('99.9%'), 'Marketing numérico não verificado em HTML SSR')
+  assert(!home.includes('12x mais rápido') && !home.includes('3.500 MB/s'), 'Home promete benchmarks inexistentes')
+  console.log('CONFIRMADO: transparência comercial e CTAs de contato sem simular compra.')
 
   const missing = await fetchRoute('/pagina-inexistente-verificacao-404')
   assert.equal(missing.status, 404, 'Rota inexistente NÃO retornou status HTTP 404')
