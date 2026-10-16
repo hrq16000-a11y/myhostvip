@@ -1,26 +1,55 @@
-# My Host VIP
+# MyHostVIP
 
-myhostvip
+Site institucional MyHostVIP, desenvolvido em **React 18 + TypeScript + Vite 8**.
 
-This project was built with [Lovable](https://lovable.dev).
+**Repositório principal:** https://github.com/hrq16000-a11y/myhostvip  
+**Domínio previsto:** https://myhostvip.com  
+**Endereço legado Lovable:** https://myhostvip.lovable.app
 
-**Live app**: https://myhostvip.lovable.app
+## Desenvolvimento independente
 
-## Build with Lovable
+O código e o fluxo de desenvolvimento deste repositório **não exigem o editor Lovable**. É possível modificar, executar, testar e gerar os arquivos estáticos apenas com Node.js e Git.
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/16f03eed-d4a8-47fd-a5fb-701cc49c5e9a).
+Requisitos: **Node.js 22** e npm 10+.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
+git clone https://github.com/hrq16000-a11y/myhostvip.git
+cd myhostvip
+npm ci
 npm run dev
 ```
+
+## Verificações
+
+```bash
+npm test             # Vitest
+npm run build        # saída de produção em dist/
+npm run preview      # visualizar dist/ localmente
+npm run lint         # regras de qualidade existentes
+npx playwright install chromium
+npm run test:e2e     # smoke test independente com Playwright
+```
+
+O workflow em `.github/workflows/ci.yml` executa **npm ci, testes unitários e build** em PRs e pushes para `main`. Este workflow não precisa de Lovable, token de implantação ou chaves adicionais.
+
+## Publicação sem Lovable
+
+O projeto é um site **Vite SPA** com React Router: qualquer hospedagem de arquivos estáticos que suporte fallback das rotas para `/index.html` pode servir a saída `dist/`.
+
+### Vercel (GitHub)
+
+1. No painel Vercel, importe **este repositório GitHub**, escolhendo `main` como branch de produção.
+2. Use as configurações versionadas em `vercel.json`: framework Vite, `npm ci`, `npm run build`, diretório `dist` e rewrite SPA.
+3. Confira a URL temporária/preview, carregamento de recursos, rotas internas, links e conversão por WhatsApp.
+4. **Somente depois de validar o deploy**, aponte o DNS do domínio para a hospedagem independente. Evite trocar DNS ou retirar a publicação Lovable antes da verificação.
+5. Depois de conectado o GitHub à hospedagem, commits em `main` poderão gerar novos deploys sem qualquer operação no Lovable.
+
+Outros provedores (Cloudflare Pages, Netlify ou hospedagem estática própria) também servem `dist/`, configurando o mesmo fallback SPA e seus próprios processos de deploy.
+
+### Responsabilidades separadas
+
+- **GitHub:** fonte da verdade de código, histórico, pull requests e verificações de CI.
+- **Hospedagem externa:** disponibiliza o site e gerencia domínio/DNS/HTTPS; não deve depender da publicação Lovable.
+- **Lovable:** opcional para visualização/edição, sem ser requisito para desenvolver ou fazer build.
+
+> **Status:** esta mudança prepara o projeto para funcionar e ser implantado de forma independente. **Ela não confirma que o domínio já foi migrado** nem cria automaticamente uma conexão entre GitHub e um provedor de hospedagem.
