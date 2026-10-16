@@ -6,7 +6,7 @@ import {
 const ease = [0.2, 0, 0, 1] as const;
 
 const benefits = [
-  { icon: Globe, title: "Landing Pages Ilimitadas", desc: "Consulte limites de sites, páginas, domínios e recursos no plano ofertado." },
+  { icon: Globe, title: "Landing Pages e limites", desc: "Consulte limites de sites, páginas, domínios e recursos no plano ofertado." },
   { icon: Zap, title: "WordPress em 1 Clique", desc: "Confirme o instalador, as versões suportadas e a assistência disponível." },
   { icon: Search, title: "SEO e conteúdo", desc: "SEO exige conteúdo, técnica e avaliação contínua; não há garantia de posição no Google." },
   { icon: Server, title: "Servidor e cache", desc: "Peça informações sobre servidor, cache e medições de performance." },
