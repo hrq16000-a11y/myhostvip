@@ -20,10 +20,10 @@ const plans = [
       "SSL gratuito",
       "Painel cPanel",
       "Instalador de aplicativos",
-      "SEO automático",
+      "Ferramentas de SEO (a confirmar)",
       "Suporte técnico",
       "1 conta de email",
-      "Tráfego ilimitado",
+      "Limites de tráfego (consultar)",
     ],
   },
   {
@@ -35,16 +35,16 @@ const plans = [
     features: [
       "5 GB SSD",
       "Landing pages ilimitadas",
-      "WordPress ilimitado",
+      "Instalações WordPress (consultar)",
       "Painel administrativo completo",
       "Softaculous",
       "SSL gratuito",
       "Backups automáticos",
       "LiteSpeed",
-      "SEO automático",
+      "Ferramentas de SEO (a confirmar)",
       "10 contas de email",
-      "Tráfego ilimitado",
-      "Subdomínios ilimitados",
+      "Limites de tráfego (consultar)",
+      "Quantidade de subdomínios (consultar)",
     ],
   },
   {
@@ -56,15 +56,15 @@ const plans = [
     features: [
       "10 GB SSD",
       "Landing pages ilimitadas",
-      "WordPress ilimitado",
+      "Instalações WordPress (consultar)",
       "LiteSpeed premium",
       "Backups diários",
       "Painel administrativo completo",
       "Instalador automático",
-      "SSL ilimitado",
+      "Cobertura SSL (consultar)",
       "Suporte prioritário",
-      "Email ilimitado",
-      "Tráfego ilimitado",
+      "Limites de contas de email (consultar)",
+      "Limites de tráfego (consultar)",
       "CloudLinux",
       "Firewall avançado",
     ],
@@ -88,8 +88,7 @@ const Plans = () => {
               Hospedagem para <span className="gradient-text">todo projeto</span>
             </h1>
             <p className="text-body max-w-2xl mx-auto">
-              Do site pessoal ao e-commerce, temos o plano perfeito para você. 
-              Todos os planos incluem SSL grátis e landing pages ilimitadas.
+              Compare as opções Starter, Profissional e Business. Preços, disponibilidade, limites e recursos são referências da apresentação anterior e precisam de confirmação antes de contratar.
             </p>
           </motion.div>
 
@@ -116,9 +115,10 @@ const Plans = () => {
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-sm text-muted-foreground">R$</span>
                     <span className="text-5xl font-extrabold text-foreground">{plan.price}</span>
-                    <span className="text-sm text-muted-foreground">/mês</span>
+                    <span className="text-sm text-muted-foreground">/mês*</span>
                   </div>
                 </div>
+                <p className="text-xs text-muted-foreground mb-3">Recursos apresentados como referência — confirme a disponibilidade:</p>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -127,9 +127,9 @@ const Plans = () => {
                     </li>
                   ))}
                 </ul>
-                <a href="https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" target="_blank" rel="noopener noreferrer" className="w-full">
+                <a href={`https://wa.me/5541997452053?text=${encodeURIComponent(`Olá, gostaria de confirmar o preço, os recursos e as condições do plano ${plan.name} da MyHostVIP.`)}`} target="_blank" rel="noopener noreferrer" className="w-full">
                   <Button variant={plan.popular ? "hero" : "heroOutline"} className="w-full">
-                    Assinar Agora
+                    Consultar este plano
                   </Button>
                 </a>
               </motion.div>
@@ -143,10 +143,10 @@ const Plans = () => {
             className="mt-16 text-center space-y-4"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border text-sm text-muted-foreground">
-              🛡️ Garantia de 30 dias ou seu dinheiro de volta
+              * Valores de referência: consulte o preço vigente e as condições contratuais
             </div>
             <p className="text-xs text-muted-foreground">
-              Todos os planos incluem migração gratuita. Sem taxas ocultas.
+              Solicite por escrito a confirmação de recursos, eventuais taxas, migração, suporte e política de cancelamento antes de contratar.
             </p>
           </motion.div>
         </div>
