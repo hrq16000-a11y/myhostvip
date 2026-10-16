@@ -13,7 +13,7 @@ const plans = [
     popular: false,
     features: [
       "1 GB de espaço SSD",
-      "Landing pages ilimitadas",
+      "Landing pages (consultar limites)",
       "WordPress",
       "SSL gratuito",
       "Painel cPanel",
@@ -29,7 +29,7 @@ const plans = [
     popular: true,
     features: [
       "5 GB SSD",
-      "Landing pages ilimitadas",
+      "Landing pages (consultar limites)",
       "Instalações WordPress (consultar)",
       "Painel administrativo completo",
       "Softaculous",
@@ -46,7 +46,7 @@ const plans = [
     popular: false,
     features: [
       "10 GB SSD",
-      "Landing pages ilimitadas",
+      "Landing pages (consultar limites)",
       "Instalações WordPress (consultar)",
       "LiteSpeed premium",
       "Backups diários",
@@ -94,7 +94,7 @@ const PricingSection = () => {
             >
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                  Mais Popular
+                  Em destaque
                 </div>
               )}
 
