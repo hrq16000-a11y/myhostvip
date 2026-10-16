@@ -27,6 +27,8 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
+      - name: Check Node.js and Vite compatibility
+        run: npm run check:runtime
       - name: Unit tests
         run: npm test
       - name: Production build
