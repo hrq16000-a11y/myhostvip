@@ -55,6 +55,17 @@ try {
     assert(mainHeading(html).includes(expectedHeading), `H1 não renderizado em ${pathname}: ${mainHeading(html)}`)
     assert(html.includes('logo-myhostvip'), `Logo original ausente em ${pathname}`)
     assert(html.includes('5541997452053'), `WhatsApp original ausente em ${pathname}`)
+    const canonical = 'https://myhostvip.com' + pathname
+    const canonicalLinks = html.match(/<link\\b[^>]*rel="canonical"[^>]*>/gi) || []
+    assert.equal(canonicalLinks.length, 1, `Canonical duplicado ou ausente: ${pathname}`)
+    assert(canonicalLinks[0].includes(`href="${canonical}"`), `Canonical errado: ${pathname}`)
+    assert(html.includes(`content="${canonical}"`) && html.includes('property="og:url"'),
+      `Open Graph URL incorreta: ${pathname}`)
+    assert(html.includes('name="twitter:card"'), `Twitter card ausente: ${pathname}`)
+    assert(html.includes('application/ld+json'), `JSON-LD ausente: ${pathname}`)
+    assert(html.includes('"@type":"') || html.includes('&quot;@type&quot;'),
+      `JSON-LD não serializado no HTML: ${pathname}`)
+    assert(!html.includes('gpt-engineer-file-uploads'), `Imagem social temporária: ${pathname}`)
     assert(!seenTitles.has(expectedTitle), `Título duplicado: ${expectedTitle}`)
     seenTitles.add(expectedTitle)
     console.log(`SSR 200 ${pathname}: ${mainHeading(html)}`)
@@ -78,6 +89,11 @@ try {
   const contact = (await fetchRoute('/contato')).html
   assert(contact.includes('Envie uma mensagem'), 'Conteúdo do contato original não foi migrado')
 
+  const missing = await fetchRoute('/pagina-inexistente-verificacao-404')
+  assert.equal(missing.status, 404, 'Rota inexistente NÃO retornou status HTTP 404')
+  assert(missing.html.includes('Página não encontrada'), 'Tela 404 amigável ausente')
+  assert(missing.html.includes('noindex,nofollow'), '404 não foi bloqueado para indexação')
+  console.log('SSR 404 /pagina-inexistente-verificacao-404: HTTP 404 confirmado')
   console.log(`PASSOU: ${routes.length} rotas SSR, titles/description únicos, navegação, WhatsApp e conteúdo.`)
 } catch (error) {
   console.error('FALHA SSR:', error)
