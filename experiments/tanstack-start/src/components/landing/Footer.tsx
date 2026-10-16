@@ -24,9 +24,9 @@ const footerLinks = {
 };
 
 const badges = [
-  { icon: Shield, label: "SSL Grátis" },
-  { icon: Lock, label: "Anti-DDoS" },
-  { icon: Zap, label: "LiteSpeed" },
+  { icon: Shield, label: "SSL (consultar)" },
+  { icon: Lock, label: "Segurança" },
+  { icon: Zap, label: "Servidor (consultar)" },
 ];
 
 const Footer = () => {
@@ -39,7 +39,7 @@ const Footer = () => {
               <img src={logo} alt="MyHostVIP" className="h-9" />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              Hospedagem profissional com performance SSD, LiteSpeed e suporte WordPress completo.
+              Conheça opções de hospedagem e criação de sites. Consulte recursos e condições vigentes.
             </p>
             <div className="flex gap-3">
               {badges.map((b) => (
