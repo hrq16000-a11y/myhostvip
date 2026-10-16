@@ -1,0 +1,13 @@
+html { color-scheme: dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #0a1020; color: #f7f8fa; line-height: 1.6; }
+a { color: #86c4ff; }
+.nav, .footer { padding: 18px max(24px, calc((100% - 1024px)/2)); }
+.nav { display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #324159; }
+.nav nav { display:flex; gap:24px; }
+.brand { font-weight: 800; text-decoration:none; }
+.layout { max-width:1024px;margin:0 auto;padding:68px 24px; }
+h1 { font-size:clamp(2.2rem,5vw,4rem);line-height:1.16;max-width:850px; }
+h2 { margin-top:40px; }
+.eyebrow { text-transform:uppercase;color:#b7d5fd;letter-spacing:.14em;font-size:.75rem; }
+.cta { display:inline-block;margin-top:24px;padding:12px 18px;background:#1261ad;color:white;border-radius:8px;text-decoration:none; }
+.footer { border-top:1px solid #324159;font-size:.82rem;color:#9baac0; }
