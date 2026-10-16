@@ -2,6 +2,7 @@ import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { motion } from "framer-motion";
 import { BookOpen, Search, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 const ease = [0.2, 0, 0, 1] as const;
@@ -64,6 +65,18 @@ const kbCategories = [
 ];
 
 const KnowledgeBase = () => {
+  const [query, setQuery] = useState("");
+  const normalized = query.trim().toLocaleLowerCase("pt-BR");
+  const filteredCategories = kbCategories
+    .map(category => ({
+      ...category,
+      articles: category.articles.filter(topic =>
+        topic.toLocaleLowerCase("pt-BR").includes(normalized) ||
+        category.title.toLocaleLowerCase("pt-BR").includes(normalized)
+      ),
+    }))
+    .filter(category => category.articles.length > 0);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -80,20 +93,26 @@ const KnowledgeBase = () => {
               Base de <span className="gradient-text">Conhecimento</span>
             </h1>
             <p className="text-body max-w-2xl mx-auto mb-8">
-              Tutoriais e guias passo a passo para ajudar você a aproveitar ao máximo sua hospedagem.
+              Lista de assuntos de suporte em preparação. Os títulos abaixo ainda não são artigos completos; use a busca para filtrar temas e consulte a equipe se precisar de ajuda.
             </p>
 
             <div className="max-w-md mx-auto relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Buscar artigos..."
+                aria-label="Buscar temas na base de conhecimento"
+                value={query}
+                onChange={event => setQuery(event.target.value)}
+                placeholder="Buscar temas..."
                 className="pl-10 bg-card border-border"
               />
             </div>
           </motion.div>
 
+          <p className="text-sm text-muted-foreground mb-6" role="status">
+            {filteredCategories.reduce((total, category) => total + category.articles.length, 0)} temas em preparação encontrados.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {kbCategories.map((cat, i) => (
+            {filteredCategories.map((cat, i) => (
               <motion.div
                 key={cat.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -111,10 +130,10 @@ const KnowledgeBase = () => {
                 <ul className="space-y-2">
                   {cat.articles.map((article) => (
                     <li key={article}>
-                      <a href="https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group py-1">
+                      <span className="flex items-center gap-2 text-sm text-muted-foreground py-1">
                         <ChevronRight className="h-3 w-3 text-primary group-hover:translate-x-0.5 transition-transform" />
                         {article}
-                      </a>
+                      </span>
                     </li>
                   ))}
                 </ul>

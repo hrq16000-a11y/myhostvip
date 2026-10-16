@@ -13,12 +13,12 @@ const plans = [
     popular: false,
     features: [
       "1 GB de espaço SSD",
-      "Landing pages ilimitadas",
+      "Landing pages (consultar limites)",
       "WordPress",
       "SSL gratuito",
       "Painel cPanel",
       "Instalador de aplicativos",
-      "SEO automático",
+      "Ferramentas de SEO (a confirmar)",
       "Suporte técnico",
     ],
   },
@@ -29,14 +29,14 @@ const plans = [
     popular: true,
     features: [
       "5 GB SSD",
-      "Landing pages ilimitadas",
-      "WordPress ilimitado",
+      "Landing pages (consultar limites)",
+      "Instalações WordPress (consultar)",
       "Painel administrativo completo",
       "Softaculous",
       "SSL gratuito",
       "Backups automáticos",
       "LiteSpeed",
-      "SEO automático",
+      "Ferramentas de SEO (a confirmar)",
     ],
   },
   {
@@ -46,13 +46,13 @@ const plans = [
     popular: false,
     features: [
       "10 GB SSD",
-      "Landing pages ilimitadas",
-      "WordPress ilimitado",
+      "Landing pages (consultar limites)",
+      "Instalações WordPress (consultar)",
       "LiteSpeed premium",
       "Backups diários",
       "Painel administrativo completo",
       "Instalador automático",
-      "SSL ilimitado",
+      "Cobertura SSL (consultar)",
       "Suporte prioritário",
     ],
   },
@@ -74,7 +74,7 @@ const PricingSection = () => {
             Escolha o plano ideal para você
           </h2>
           <p className="text-body max-w-2xl mx-auto">
-            Todos os planos incluem landing pages ilimitadas, WordPress e SSL gratuito.
+            Compare as opções de hospedagem. Valores e recursos da apresentação original devem ser confirmados antes da contratação.
           </p>
         </motion.div>
 
@@ -94,7 +94,7 @@ const PricingSection = () => {
             >
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                  Mais Popular
+                  Em destaque
                 </div>
               )}
 
@@ -104,10 +104,11 @@ const PricingSection = () => {
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-sm text-muted-foreground">R$</span>
                   <span className="text-4xl font-extrabold text-foreground">{plan.price}</span>
-                  <span className="text-sm text-muted-foreground">/mês</span>
+                  <span className="text-sm text-muted-foreground">/mês*</span>
                 </div>
               </div>
 
+              <p className="text-xs text-muted-foreground mb-3">Recursos a confirmar com o atendimento:</p>
               <ul className="space-y-3 mb-8">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -122,7 +123,7 @@ const PricingSection = () => {
                   variant={plan.popular ? "hero" : "heroOutline"}
                   className="w-full"
                 >
-                  Começar Agora
+                  Ver condições
                 </Button>
               </Link>
             </motion.div>
@@ -138,7 +139,7 @@ const PricingSection = () => {
           className="mt-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border text-sm text-muted-foreground">
-            🛡️ Garantia de 30 dias ou seu dinheiro de volta
+            * Preços de referência; solicite proposta e termos atualizados.
           </div>
         </motion.div>
       </div>

@@ -9,7 +9,7 @@ const trustBadges = [
   { icon: HardDrive, label: "Servidores SSD" },
   { icon: Shield, label: "SSL Gratuito" },
   { icon: Zap, label: "WordPress" },
-  { icon: Search, label: "SEO Otimizado" },
+  { icon: Search, label: "Planejamento de SEO" },
 ];
 
 const Hero = () => {
@@ -32,7 +32,7 @@ const Hero = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/80 text-muted-foreground text-xs font-medium tracking-tight">
             <span className="status-pip" />
-            🔥 Oferta limitada — Plano Starter a partir de R$4,99/mês
+            Consulte preços e disponibilidade do plano Starter
           </div>
         </motion.div>
 
@@ -43,8 +43,7 @@ const Hero = () => {
           className="text-display mb-6"
         >
           Hospedagem rápida e poderosa para criar{" "}
-          <span className="gradient-text">sites e landing pages</span>{" "}
-          ilimitadas
+          <span className="gradient-text">sites e landing pages</span>
         </motion.h1>
 
         {/* Pricing highlight */}
@@ -55,14 +54,14 @@ const Hero = () => {
           className="mb-8 inline-flex flex-col items-center"
         >
           <div className="gradient-border rounded-2xl bg-card p-6 text-center">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Plano Starter</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Preço de referência · Starter</p>
             <div className="flex items-baseline justify-center gap-1">
-              <span className="text-sm text-muted-foreground">a partir de</span>
+              <span className="text-sm text-muted-foreground">ref. antiga</span>
               <span className="text-lg text-muted-foreground ml-1">R$</span>
               <span className="text-5xl font-extrabold gradient-text">4,99</span>
-              <span className="text-sm text-muted-foreground">/mês</span>
+              <span className="text-sm text-muted-foreground">/mês*</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-2">Landing pages ilimitadas · WordPress · SSL grátis</p>
+            <p className="text-xs text-muted-foreground mt-2">* Consulte preço vigente, limites, recursos e condições antes de contratar.</p>
           </div>
         </motion.div>
 
@@ -72,8 +71,8 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.25, ease }}
           className="text-body max-w-2xl mx-auto mb-10"
         >
-          Crie sites profissionais em minutos, com WordPress e hospedagem
-          otimizada para SEO e anúncios. Servidores SSD com LiteSpeed e suporte 24/7.
+          Conheça opções de hospedagem e criação de sites com WordPress.
+          Confirme recursos, limites técnicos e horários de suporte com o atendimento.
         </motion.p>
 
         <motion.div
@@ -119,10 +118,10 @@ const Hero = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
         >
           {[
-            { label: "Uptime", value: "99.9%", sub: "Garantido" },
-            { label: "Velocidade", value: "<200ms", sub: "LiteSpeed" },
-            { label: "Storage", value: "SSD NVMe", sub: "Ultra-rápido" },
-            { label: "Clientes", value: "10K+", sub: "Satisfeitos" },
+            { label: "Disponibilidade", value: "SLA", sub: "A confirmar" },
+            { label: "Velocidade", value: "Medição", sub: "Solicite dados" },
+            { label: "Armazenamento", value: "SSD", sub: "Consulte o plano" },
+            { label: "Suporte", value: "Contato", sub: "Confirme horários" },
           ].map((m) => (
             <div key={m.label} className="card-vip-inset p-4 hover-lift text-center">
               <p className="text-xs text-muted-foreground mb-1">{m.label}</p>

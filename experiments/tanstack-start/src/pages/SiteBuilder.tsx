@@ -8,19 +8,19 @@ import { Layout, PenTool, Palette, MousePointer, Blocks, Sparkles } from "lucide
 const ease = [0.2, 0, 0, 1] as const;
 
 const features = [
-  { icon: Layout, title: "WordPress Pré-instalado", desc: "Crie seu site com o CMS mais popular do mundo, já configurado e pronto para uso." },
-  { icon: Palette, title: "Templates Profissionais", desc: "Centenas de templates responsivos para qualquer tipo de negócio." },
-  { icon: PenTool, title: "Editor Visual", desc: "Edite textos, imagens e layouts diretamente no navegador sem código." },
-  { icon: MousePointer, title: "Instalação em 1 Clique", desc: "WordPress, WooCommerce, blogs — instale tudo com um único clique." },
-  { icon: Blocks, title: "Personalização Completa", desc: "Customize cores, fontes, layouts e funcionalidades sem limites." },
-  { icon: Sparkles, title: "Plugins e Extensões", desc: "Acesse milhares de plugins para adicionar qualquer funcionalidade." },
+  { icon: Layout, title: "WordPress", desc: "Conheça o uso do WordPress e confirme se o seu plano inclui instalação assistida." },
+  { icon: Palette, title: "Templates Profissionais", desc: "Explore tipos de layout e pergunte quais modelos estão disponíveis." },
+  { icon: PenTool, title: "Editor Visual", desc: "Considere ferramentas de edição visual compatíveis com seu site e plano." },
+  { icon: MousePointer, title: "Instalação em 1 Clique", desc: "Confirme se seu painel permite instalação automática de WordPress e extensões." },
+  { icon: Blocks, title: "Personalização Completa", desc: "Adapte aparência e conteúdo conforme o tema e os recursos contratados." },
+  { icon: Sparkles, title: "Plugins e Extensões", desc: "Verifique compatibilidade, licenças, segurança e custo dos plugins escolhidos." },
 ];
 
 const steps = [
   { step: "01", title: "Escolha seu plano", desc: "Selecione o plano que melhor atende às suas necessidades." },
-  { step: "02", title: "Instale o WordPress", desc: "Com 1 clique, seu WordPress estará pronto para usar." },
+  { step: "02", title: "Instale o WordPress", desc: "Confirme com o suporte como instalar e configurar WordPress no plano." },
   { step: "03", title: "Personalize seu site", desc: "Escolha um template e customize como quiser." },
-  { step: "04", title: "Publique!", desc: "Seu site está no ar, pronto para receber visitantes." },
+  { step: "04", title: "Publique!", desc: "Revise domínio, SSL, configuração e testes antes de publicar." },
 ];
 
 const SiteBuilder = () => {
@@ -37,10 +37,10 @@ const SiteBuilder = () => {
           >
             <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Criador de Sites</p>
             <h1 className="text-display mb-4">
-              Crie sites <span className="gradient-text">profissionais</span> sem código
+              Crie sites <span className="gradient-text">com WordPress</span> e ferramentas visuais
             </h1>
             <p className="text-body max-w-2xl mx-auto mb-8">
-              Com WordPress e templates prontos, qualquer pessoa pode criar um site bonito e funcional em minutos.
+              Explore como montar um site com WordPress. O tempo, a configuração e as ferramentas dependem do projeto e do plano.
             </p>
             <Link to="/planos">
               <Button variant="hero" size="lg">Começar Agora</Button>
@@ -75,7 +75,7 @@ const SiteBuilder = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-foreground mb-4">Como funciona</h2>
-            <p className="text-body max-w-xl mx-auto">4 passos simples para ter seu site no ar.</p>
+            <p className="text-body max-w-xl mx-auto">Quatro etapas de referência para planejar um site.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

@@ -11,36 +11,36 @@ const categories = [
   {
     icon: Layout,
     title: "Landing Pages",
-    count: "45+ templates",
+    count: "Exemplos de formatos",
     desc: "Páginas de captura otimizadas para conversão. Ideal para campanhas de marketing.",
     templates: ["Captura de Leads", "Lançamento de Produto", "Webinar", "E-book Download", "App Landing"],
   },
   {
     icon: FileText,
     title: "Blogs",
-    count: "30+ templates",
+    count: "Exemplos de formatos",
     desc: "Templates para blogs profissionais com layouts modernos e responsivos.",
     templates: ["Blog Pessoal", "Blog Corporativo", "Magazine", "Portfólio Blog", "Travel Blog"],
   },
   {
     icon: Briefcase,
     title: "Sites Empresariais",
-    count: "50+ templates",
+    count: "Exemplos de formatos",
     desc: "Sites institucionais para empresas de todos os tamanhos.",
     templates: ["Agência Digital", "Consultoria", "Escritório de Advocacia", "Contabilidade", "Startup"],
   },
   {
     icon: Camera,
     title: "Portfólios",
-    count: "25+ templates",
+    count: "Exemplos de formatos",
     desc: "Mostre seu trabalho com elegância e profissionalismo.",
     templates: ["Fotógrafo", "Designer", "Desenvolvedor", "Artista", "Freelancer"],
   },
   {
     icon: ShoppingCart,
     title: "Páginas de Vendas",
-    count: "35+ templates",
-    desc: "Templates de alta conversão para vender produtos e serviços online.",
+    count: "Exemplos de formatos",
+    desc: "Estruturas de páginas voltadas à apresentação de produtos e serviços.",
     templates: ["Produto Digital", "Curso Online", "SaaS", "E-commerce", "Serviço Local"],
   },
 ];
@@ -59,10 +59,10 @@ const Templates = () => {
           >
             <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Templates</p>
             <h1 className="text-display mb-4">
-              Templates <span className="gradient-text">prontos</span> para WordPress
+              Ideias de <span className="gradient-text">templates</span> para seu projeto
             </h1>
             <p className="text-body max-w-2xl mx-auto">
-              Mais de 185 templates profissionais para qualquer tipo de projeto. Todos responsivos e otimizados para SEO.
+              Explore formatos e estilos que podem inspirar seu projeto. Esta página não representa um catálogo de arquivos já disponíveis para download; consulte a equipe sobre modelos e serviços.
             </p>
           </motion.div>
 
@@ -106,8 +106,8 @@ const Templates = () => {
             transition={{ duration: 0.6, ease }}
             className="mt-16 text-center"
           >
-            <Link to="/planos">
-              <Button variant="hero" size="lg">Acessar Templates</Button>
+            <Link to="/contato">
+              <Button variant="hero" size="lg">Consultar modelos disponíveis</Button>
             </Link>
           </motion.div>
         </div>

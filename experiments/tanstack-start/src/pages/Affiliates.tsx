@@ -7,18 +7,18 @@ import { DollarSign, Link2, BarChart3, Users, Gift, TrendingUp } from "lucide-re
 const ease = [0.2, 0, 0, 1] as const;
 
 const benefits = [
-  { icon: DollarSign, title: "Comissão por Venda", desc: "Ganhe comissão recorrente para cada cliente que você indicar." },
-  { icon: Link2, title: "Links Personalizados", desc: "Receba links exclusivos de afiliado para rastrear suas indicações." },
-  { icon: BarChart3, title: "Painel de Afiliado", desc: "Acompanhe vendas, comissões e métricas em tempo real." },
-  { icon: Users, title: "Sem Limite de Indicações", desc: "Indique quantos clientes quiser. Sem teto de ganhos." },
-  { icon: Gift, title: "Bônus por Desempenho", desc: "Ganhe bônus extras ao atingir metas de vendas mensais." },
-  { icon: TrendingUp, title: "Comissão Recorrente", desc: "Enquanto o cliente estiver ativo, você continua ganhando." },
+  { icon: DollarSign, title: "Critérios de Indicação", desc: "Entenda quais indicações podem ser aceitas, caso exista programa ativo." },
+  { icon: Link2, title: "Links e Rastreio", desc: "Consulte se existe uma forma oficial de identificar indicações." },
+  { icon: BarChart3, title: "Relatórios", desc: "Pergunte como os resultados são acompanhados antes de iniciar uma parceria." },
+  { icon: Users, title: "Regras de Participação", desc: "Verifique restrições, elegibilidade e limites eventualmente aplicáveis." },
+  { icon: Gift, title: "Condições Financeiras", desc: "Comissões, bônus e datas de pagamento dependem de confirmação formal." },
+  { icon: TrendingUp, title: "Prazo e Contrato", desc: "Confirme duração, cancelamento e responsabilidades antes de começar." },
 ];
 
 const steps = [
-  { step: "1", title: "Cadastre-se", desc: "Crie sua conta de afiliado gratuitamente." },
-  { step: "2", title: "Compartilhe", desc: "Divulgue seu link personalizado nas redes sociais, blog ou email." },
-  { step: "3", title: "Ganhe", desc: "Receba comissão por cada venda realizada através do seu link." },
+  { step: "1", title: "Converse", desc: "Peça informações sobre a disponibilidade de parcerias." },
+  { step: "2", title: "Avalie as condições", desc: "Confirme regras, serviços elegíveis e eventual remuneração antes de indicar." },
+  { step: "3", title: "Formalize", desc: "Só divulgue ofertas ou comissões depois de receber as condições confirmadas." },
 ];
 
 const Affiliates = () => {
@@ -35,12 +35,12 @@ const Affiliates = () => {
           >
             <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Programa de Afiliados</p>
             <h1 className="text-display mb-4">
-              Ganhe dinheiro <span className="gradient-text">indicando</span> a MyHostVIP
+              Conheça possibilidades de <span className="gradient-text">parceria</span> com a MyHostVIP
             </h1>
             <p className="text-body max-w-2xl mx-auto mb-8">
-              Torne-se um afiliado e receba comissões recorrentes por cada cliente que você trouxer para nossa plataforma.
+              Tem interesse em indicar clientes? Consulte diretamente a equipe sobre a existência e as condições atuais de eventuais parcerias, sem promessas de remuneração antecipadas.
             </p>
-            <Button variant="hero" size="lg">Tornar-se Afiliado</Button>
+            <a href="https://wa.me/5541997452053?text=Ol%C3%A1%2C%20gostaria%20de%20consultar%20as%20condi%C3%A7%C3%B5es%20de%20parceria%20com%20a%20MyHostVIP" target="_blank" rel="noopener noreferrer"><Button variant="hero" size="lg">Consultar parcerias pelo WhatsApp</Button></a>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-20">

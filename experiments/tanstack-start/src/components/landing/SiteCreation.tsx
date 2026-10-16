@@ -7,9 +7,9 @@ const ease = [0.2, 0, 0, 1] as const;
 
 const siteTypes = [
   { icon: Layout, title: "Sites Profissionais", desc: "Sites institucionais e corporativos com design moderno." },
-  { icon: FileText, title: "Landing Pages", desc: "Páginas de captura otimizadas para converter visitantes em clientes." },
+  { icon: FileText, title: "Landing Pages", desc: "Páginas para organizar campanhas, formulários e jornadas de contato." },
   { icon: PenTool, title: "Blogs", desc: "Crie um blog completo com WordPress e compartilhe conteúdo." },
-  { icon: ShoppingCart, title: "Páginas de Vendas", desc: "Páginas de alta conversão para vender produtos e serviços." },
+  { icon: ShoppingCart, title: "Páginas de Vendas", desc: "Páginas para apresentar ofertas e orientar o próximo passo do visitante." },
   { icon: Megaphone, title: "Páginas para Google Ads", desc: "Landing pages otimizadas para campanhas de anúncios pagos." },
 ];
 
@@ -26,11 +26,10 @@ const SiteCreation = () => {
           >
             <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Criador de Sites</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-              Crie qualquer tipo de site em minutos
+              Planeje seu projeto de site com mais clareza
             </h2>
             <p className="text-body mb-8">
-              Com WordPress pré-instalado e centenas de templates prontos, você cria sites profissionais
-              sem precisar de conhecimento técnico. Tudo hospedado no mesmo plano.
+              Use WordPress e ferramentas visuais conforme suas necessidades. Confirme a disponibilidade de temas, instalação assistida e serviços incluídos no plano.
             </p>
             <Link to="/criador-de-sites">
               <Button variant="hero" size="lg">Saiba Mais</Button>

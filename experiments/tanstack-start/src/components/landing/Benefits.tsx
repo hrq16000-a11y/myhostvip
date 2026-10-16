@@ -6,14 +6,14 @@ import {
 const ease = [0.2, 0, 0, 1] as const;
 
 const benefits = [
-  { icon: Globe, title: "Landing Pages Ilimitadas", desc: "Crie quantas páginas quiser sem limites. Ideal para campanhas de marketing e anúncios." },
-  { icon: Zap, title: "WordPress em 1 Clique", desc: "Instalação automática do WordPress com Softaculous. Seu site pronto em segundos." },
-  { icon: Search, title: "SEO Automático", desc: "Ferramentas integradas de otimização para mecanismos de busca. Apareça no Google." },
-  { icon: Server, title: "LiteSpeed Ultrarrápido", desc: "Servidor web mais rápido do mercado. Até 12x mais rápido que Apache." },
-  { icon: Cpu, title: "Painel cPanel", desc: "Gerencie seu site com o painel mais popular e profissional do mundo." },
-  { icon: Lock, title: "Backups Automáticos", desc: "Seus dados protegidos com backups regulares. Restaure a qualquer momento." },
-  { icon: Shield, title: "SSL Gratuito", desc: "Certificado SSL incluso em todos os planos. Site seguro com HTTPS." },
-  { icon: HardDrive, title: "Proteção Anti-DDoS", desc: "Firewall avançado e proteção contra ataques. Seu site sempre no ar." },
+  { icon: Globe, title: "Landing Pages e limites", desc: "Consulte limites de sites, páginas, domínios e recursos no plano ofertado." },
+  { icon: Zap, title: "WordPress em 1 Clique", desc: "Confirme o instalador, as versões suportadas e a assistência disponível." },
+  { icon: Search, title: "SEO e conteúdo", desc: "SEO exige conteúdo, técnica e avaliação contínua; não há garantia de posição no Google." },
+  { icon: Server, title: "Servidor e cache", desc: "Peça informações sobre servidor, cache e medições de performance." },
+  { icon: Cpu, title: "Painel cPanel", desc: "Verifique a disponibilidade e o licenciamento do painel do seu plano." },
+  { icon: Lock, title: "Backups Automáticos", desc: "Consulte frequência, retenção, custo e processo de recuperação." },
+  { icon: Shield, title: "SSL Gratuito", desc: "Confirme emissão, cobertura e renovação de certificado SSL no contrato." },
+  { icon: HardDrive, title: "Proteção Anti-DDoS", desc: "Solicite detalhes sobre controles de segurança e políticas de disponibilidade." },
 ];
 
 const Benefits = () => {
@@ -29,10 +29,10 @@ const Benefits = () => {
         >
           <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Por que escolher a MyHostVIP?</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Tudo que você precisa em um só lugar
+            Recursos e critérios para escolher sua hospedagem
           </h2>
           <p className="text-body max-w-2xl mx-auto">
-            Hospedagem completa com ferramentas profissionais para criar, gerenciar e escalar seus projetos online.
+            Compare serviços disponíveis, limites e condições para escolher uma hospedagem adequada.
           </p>
         </motion.div>
 
