@@ -62,7 +62,7 @@ const plans = [
       "Painel administrativo completo",
       "Instalador automático",
       "Cobertura SSL (consultar)",
-      "Suporte prioritário",
+      "Prioridade de suporte (consulte condições)",
       "Limites de contas de email (consultar)",
       "Limites de tráfego (consultar)",
       "CloudLinux",

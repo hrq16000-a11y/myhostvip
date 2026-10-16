@@ -29,6 +29,8 @@ jobs:
           node-version: '22'
       - name: Install locked pilot dependencies
         run: npm ci --no-audit --no-fund
+      - name: Block unverified commercial claims and accidental preview indexing
+        run: npm run check:commercial-gates
       - name: Verify dependency consistency
         run: npm ls @tanstack/react-start @tanstack/react-router @tanstack/router-core
       - name: Build SSR with Nitro

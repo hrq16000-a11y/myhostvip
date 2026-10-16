@@ -53,7 +53,7 @@ const plans = [
       "Painel administrativo completo",
       "Instalador automático",
       "Cobertura SSL (consultar)",
-      "Suporte prioritário",
+      "Prioridade de suporte (consulte condições)",
     ],
   },
 ];
