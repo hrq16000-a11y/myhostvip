@@ -4,10 +4,10 @@ import { Gauge, HardDrive, Globe, Zap } from "lucide-react";
 const ease = [0.2, 0, 0, 1] as const;
 
 const specs = [
-  { icon: Zap, label: "LiteSpeed Web Server", value: "12x mais rápido", desc: "Servidor web de última geração com cache integrado." },
-  { icon: HardDrive, label: "SSD NVMe", value: "3.500 MB/s", desc: "Armazenamento ultrarrápido para leitura e escrita." },
-  { icon: Globe, label: "HTTP/3 + QUIC", value: "Latência mínima", desc: "Protocolo mais moderno para conexões mais rápidas." },
-  { icon: Gauge, label: "CDN Opcional", value: "Global", desc: "Distribua conteúdo em servidores ao redor do mundo." },
+  { icon: Zap, label: "LiteSpeed Web Server", value: "Consulte", desc: "Confira o servidor e as configurações de cache contratáveis." },
+  { icon: HardDrive, label: "SSD NVMe", value: "Consulte", desc: "Peça especificações reais de armazenamento e métricas de I/O." },
+  { icon: Globe, label: "HTTP/3 + QUIC", value: "Verifique", desc: "Verifique suporte a HTTP/3 e QUIC em seu ambiente." },
+  { icon: Gauge, label: "CDN Opcional", value: "Opcional", desc: "Verifique se há integração de CDN, custos e cobertura." },
 ];
 
 const Performance = () => {
@@ -26,7 +26,7 @@ const Performance = () => {
             Velocidade que faz diferença
           </h2>
           <p className="text-body max-w-2xl mx-auto">
-            Infraestrutura de ponta com os melhores componentes do mercado para garantir a máxima velocidade.
+            Compare características técnicas e resultados medidos. Não existem métricas de desempenho garantidas sem um teste do ambiente contratado.
           </p>
         </motion.div>
 
@@ -62,29 +62,11 @@ const Performance = () => {
           transition={{ duration: 0.6, delay: 0.3, ease }}
           className="mt-12 card-vip p-6"
         >
-          <h3 className="text-sm font-semibold text-foreground mb-6">Comparativo de Velocidade</h3>
-          <div className="space-y-4">
-            {[
-              { label: "MyHostVIP (LiteSpeed)", pct: 95, color: "bg-primary" },
-              { label: "Hospedagem Convencional (Apache)", pct: 35, color: "bg-muted-foreground/30" },
-              { label: "Hospedagem Gratuita", pct: 15, color: "bg-muted-foreground/20" },
-            ].map((bar) => (
-              <div key={bar.label}>
-                <div className="flex justify-between text-xs mb-1.5">
-                  <span className="text-muted-foreground">{bar.label}</span>
-                  <span className="font-mono-data text-foreground">{bar.pct}%</span>
-                </div>
-                <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${bar.pct}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2, ease }}
-                    className={`h-full rounded-full ${bar.color}`}
-                  />
-                </div>
-              </div>
-            ))}
+          <h3 className="text-sm font-semibold text-foreground mb-6">Como avaliar a performance</h3>
+          <div className="space-y-3 text-sm text-muted-foreground">
+            <p>Peça testes de tempo de resposta, indicadores de disponibilidade e limites de recursos do plano.</p>
+            <p>Compare as opções sob condições semelhantes de página, localização, cache e rede.</p>
+            <p>Percentuais ilustrativos não representam medição de servidores reais.</p>
           </div>
         </motion.div>
       </div>
