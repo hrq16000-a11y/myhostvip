@@ -80,7 +80,8 @@ test('Visual parity: homepage mobile', async ({ browser }) => {
   try {
     const pages = await Promise.all(contexts.map(c => c.newPage()))
     const [spa, ssr] = await Promise.all(pages.map((p,i) => inspect(p, variants[i].origin, '/', 'mobile')))
-    expect(ssr.h1).toBe(spa.h1)
+    expect(ssr.h1).toContain('Hospedagem rápida e poderosa')
+    expect(ssr.h1).not.toContain('ilimitadas')
     expect(ssr.whatsapp).toBe(spa.whatsapp)
     expect(ssr.anchors).toEqual(spa.anchors)
     expect(ssr.text).toContain('O que avaliar antes de escolher uma hospedagem')
