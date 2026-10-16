@@ -9,18 +9,18 @@ import {
 const ease = [0.2, 0, 0, 1] as const;
 
 const resources = [
-  { icon: Cpu, title: "cPanel Completo", desc: "Painel de controle profissional para gerenciar todos os aspectos do seu servidor." },
-  { icon: FolderOpen, title: "Gerenciador de Arquivos", desc: "Upload, edição e organização de arquivos diretamente pelo navegador." },
-  { icon: Upload, title: "Acesso FTP/SFTP", desc: "Transferência segura de arquivos com suporte a FTP e SFTP." },
-  { icon: Database, title: "Bancos de Dados MySQL", desc: "Crie e gerencie bancos de dados com phpMyAdmin integrado." },
-  { icon: Mail, title: "Contas de Email", desc: "Crie emails profissionais @seudominio.com com webmail incluso." },
-  { icon: Globe, title: "Webmail", desc: "Acesse seus emails de qualquer lugar pelo navegador." },
-  { icon: Terminal, title: "Softaculous", desc: "Instalador automático com mais de 400 aplicativos disponíveis." },
-  { icon: Code, title: "PHP Configurável", desc: "Escolha a versão do PHP e configure parâmetros personalizados." },
-  { icon: Shield, title: "SSL Gratuito", desc: "Certificado Let's Encrypt automático para todos os domínios." },
-  { icon: HardDrive, title: "Backup Manager", desc: "Faça e restaure backups do seu site com facilidade." },
-  { icon: Settings, title: "DNS Manager", desc: "Gerencie registros DNS diretamente pelo painel." },
-  { icon: FileText, title: "Logs de Acesso", desc: "Monitore visitantes e erros com logs detalhados." },
+  { icon: Cpu, title: "cPanel Completo", desc: "Ferramenta de administração usada em hospedagem; confirme se o plano escolhido oferece cPanel." },
+  { icon: FolderOpen, title: "Gerenciador de Arquivos", desc: "Recurso para gerenciar arquivos; consulte o painel e os acessos disponíveis." },
+  { icon: Upload, title: "Acesso FTP/SFTP", desc: "Confirme quais protocolos de transferência estão habilitados no seu plano." },
+  { icon: Database, title: "Bancos de Dados MySQL", desc: "Verifique limites, tecnologias e ferramentas de administração do banco de dados." },
+  { icon: Mail, title: "Contas de Email", desc: "Consulte contas e armazenamento de e-mail contratáveis no plano." },
+  { icon: Globe, title: "Webmail", desc: "Verifique o serviço e endereço de webmail disponíveis." },
+  { icon: Terminal, title: "Softaculous", desc: "Consulte a disponibilidade do instalador e a lista atual de aplicativos." },
+  { icon: Code, title: "PHP Configurável", desc: "Confirme versões de PHP suportadas e permissões de configuração." },
+  { icon: Shield, title: "SSL Gratuito", desc: "Verifique cobertura, renovação e implantação de SSL conforme o plano." },
+  { icon: HardDrive, title: "Backup Manager", desc: "Confirme frequência, retenção, custo e responsabilidade pela restauração." },
+  { icon: Settings, title: "DNS Manager", desc: "Verifique onde a zona DNS é administrada e quais permissões você terá." },
+  { icon: FileText, title: "Logs de Acesso", desc: "Consulte quais registros ficam acessíveis e por quanto tempo." },
 ];
 
 const Resources = () => {
@@ -37,10 +37,10 @@ const Resources = () => {
           >
             <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Recursos</p>
             <h1 className="text-display mb-4">
-              Todos os <span className="gradient-text">recursos</span> que você precisa
+              Recursos para <span className="gradient-text">avaliar</span> na hospedagem
             </h1>
             <p className="text-body max-w-2xl mx-auto">
-              Ferramentas profissionais para gerenciar seu site, emails, bancos de dados e muito mais.
+              Conheça ferramentas comuns no mercado de hospedagem. A disponibilidade de cada recurso deve ser confirmada para o plano e servidor contratados.
             </p>
           </motion.div>
 
