@@ -29,7 +29,7 @@ const ConversionBanner = () => {
               Pronto para começar?
             </h2>
             <p className="text-body max-w-xl mx-auto mb-8">
-              Junte-se a milhares de clientes que já confiam na MyHostVIP.
+              Conheça as opções e consulte qual plano atende ao seu projeto.
               Comece hoje mesmo com nosso plano a partir de R$4,99/mês.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
