@@ -52,6 +52,10 @@ const Navbar = () => {
         </div>
 
         <button
+          type="button"
+          aria-label="Alternar menu de navegação"
+          aria-expanded={mobileOpen}
+          aria-controls="myhostvip-menu-mobile"
           onClick={() => setMobileOpen(!mobileOpen)}
           className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
         >
@@ -67,7 +71,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl overflow-hidden"
           >
-            <div className="section-container py-4 flex flex-col gap-1">
+            <div id="myhostvip-menu-mobile" className="section-container py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
