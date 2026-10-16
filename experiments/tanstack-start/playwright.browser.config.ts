@@ -12,7 +12,6 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: 'node .output/server/index.mjs',
-    cwd: 'experiments/tanstack-start',
     url: 'http://127.0.0.1:43126',
     env: { PORT: '43126', HOST: '127.0.0.1', NODE_ENV: 'production' },
     timeout: 120_000,
