@@ -45,3 +45,43 @@ test('unknown route: real HTTP 404 and human-readable recovery link', async ({ p
   await expect(page.getByRole('heading', { name: 'Página não encontrada' })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Voltar ao início' })).toHaveAttribute('href', '/')
 })
+
+test('contact: validated form opens WhatsApp with user-entered details but does not auto-send', async ({ page }) => {
+  await page.goto('/contato')
+  await page.evaluate(() => {
+    Object.defineProperty(window, 'open', {
+      configurable: true,
+      value: (url: string) => {
+        (window as Window & { __testWhatsappUrl?: string }).__testWhatsappUrl = url
+        return null
+      },
+    })
+  })
+  await page.getByRole('button', { name: 'Continuar no WhatsApp' }).click()
+  expect(await page.evaluate(() => (window as Window & { __testWhatsappUrl?: string }).__testWhatsappUrl)).toBeUndefined()
+
+  await page.getByPlaceholder('Seu nome').fill('Pessoa de Teste')
+  await page.getByPlaceholder('seu@email.com').fill('cliente@example.org')
+  await page.getByPlaceholder('Como podemos ajudar?').fill('Ajuda com o plano')
+  await page.getByPlaceholder('Descreva sua dúvida ou solicitação...').fill('Olá, gostaria de conhecer os planos.')
+  await page.getByRole('button', { name: 'Continuar no WhatsApp' }).click()
+  const url = await page.evaluate(() => (window as Window & { __testWhatsappUrl?: string }).__testWhatsappUrl)
+  expect(url).toMatch(/^https:\/\/wa\.me\/5541997452053\?text=/)
+  const message = new URL(url!).searchParams.get('text')
+  expect(message).toContain('Pessoa de Teste')
+  expect(message).toContain('cliente@example.org')
+  expect(message).toContain('Ajuda com o plano')
+  expect(message).toContain('Olá, gostaria de conhecer os planos.')
+  await expect(page.getByText('Nada é enviado automaticamente.')).toBeVisible()
+})
+
+test('blog: only topic previews are shown and categories really filter', async ({ page }) => {
+  await page.goto('/blog')
+  await expect(page.getByText('6 temas em preparação.')).toBeVisible()
+  await page.getByRole('button', { name: 'WordPress', exact: true }).click()
+  await expect(page.getByText('2 temas em preparação.')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'WordPress', exact: true })).toHaveAttribute('aria-pressed','true')
+  await expect(page.locator('article')).toHaveCount(2)
+  await page.getByRole('button', { name: 'Todos', exact: true }).click()
+  await expect(page.locator('article')).toHaveCount(6)
+})
