@@ -1,36 +1,25 @@
-# Piloto de SSR TanStack Start — MyHostVIP
+# TanStack Start SSR — Migração piloto da home MyHostVIP
 
-**Experimental e isolado:** o Vite/React Router existente e a Vercel de produção continuam sendo publicados a partir da raiz do repositório. Este subprojeto não é usado pelo domínio principal.
+Experimento em `experiments/tanstack-start/`. O projeto comercial na raiz do repositório permanece Vite/React Router e sua implantação Vercel não é alterada.
 
-## Escopo da rodada
+## Rodada 4
 
-- Comprovar TanStack Start + Vite 8 + Node >=22.12 + React 18, sem Lovable.
-- Comprovar SSR **de verdade** com HTML inicial da home e da rota /planos, tags head diferentes e HTTP 200.
-- Manter **noindex,nofollow** no piloto para não concorrer com o domínio oficial.
-- Não portar interface, preços, integração comercial nem WhatsApp nesta etapa.
+Os arquivos originais de `src/pages/Index.tsx`, `src/components/landing/*`, `src/components/WhatsAppFloat.tsx`, `src/components/ui/button.tsx`, `src/lib/utils.ts`, `src/index.css`, `src/assets/logo-myhostvip.png` e `tailwind.config.ts` foram copiados **com os mesmos Git blobs** da fonte oficial. Identidade, copy, seções, comportamento motion, estilos e links foram preservados no código.
 
-## Validação
+Vite resolve imports `react-router-dom` por um **adaptador exclusivo do piloto**: links de `/` e `/planos` usam o TanStack Router; links das outras páginas continuam levando ao domínio comercial enquanto não migrarem. Nada disso altera a aplicação principal.
 
-```sh
+Execução via GitHub:
+```bash
 cd experiments/tanstack-start
 npm ci --no-audit --no-fund
 npm run build
 npm run smoke:ssr
 ```
 
-O workflow GitHub `.github/workflows/tanstack-start-pilot.yml` executa o mesmo procedimento em PRs, em Node 22.
+O HTML SSR da home precisa conter título principal, seções originais, logo, preços/CTAs, link de WhatsApp e meta `noindex,nofollow`. `/planos` continua como página mínima de teste e será migrada na próxima frente.
 
-## Critérios antes de substituir o site atual
+## Limites
 
-1. Lockfile versionado: validar repetibilidade de `npm ci` a cada alteração de dependências.
-2. Portar páginas e componentes integralmente com comparação visual (desktop e mobile).
-3. Preservar todos os links, CTAs, WhatsApp e navegação.
-4. Garantir canonical autorreferente, metadados e schema válidos em cada URL indexável.
-5. Testar rota inexistente com HTTP 404 verdadeiro, sitemap só de URLs aptas e imagens OG permanentes.
-6. Verificar deploy Vercel com framework `tanstack-start`, Nitro e recursos SSR em preview isolado.
-7. Só então avaliar merge/configuração de produção e DNS, mantendo rollback.
-
-Fontes:
-- https://tanstack.com/start/latest/docs/framework/react/build-from-scratch
-- https://tanstack.com/start/latest/docs/framework/react/guide/hosting
-- https://tanstack.com/start/latest/docs/framework/react/guide/routing
+- Ainda faltam: verificação visual/hidratação real em browsers, SEO por rota, performance, rotas secundárias e preview SSR na Vercel.
+- Os indicadores de performance, depoimentos, garantias e CNPJ do conteúdo comercial original não foram auditados nesta rodada. Antes de indexar uma página migrada, exigir provas e substituir placeholders, sem inventar dados.
+- Não mudar domínio principal, configuração Vercel de produção ou retirar `noindex` deste piloto.

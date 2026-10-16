@@ -1,0 +1,28 @@
+name: One-time SSR home lockfile
+on:
+  push:
+    branches: [feat/tanstack-ssr-home-parity-20261016]
+    paths: ['.github/workflows/ssr-home-lock-once.yml']
+permissions:
+  contents: write
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: feat/tanstack-ssr-home-parity-20261016
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Rebuild nested lockfile
+        working-directory: experiments/tanstack-start
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Commit updated package-lock
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- experiments/tanstack-start/package-lock.json; then exit 0; fi
+          git add experiments/tanstack-start/package-lock.json
+          git commit -m "chore(pilot): refresh locked homepage SSR dependencies"
+          git push origin HEAD:feat/tanstack-ssr-home-parity-20261016
