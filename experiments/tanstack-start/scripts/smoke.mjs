@@ -56,7 +56,7 @@ try {
     assert(html.includes('logo-myhostvip'), `Logo original ausente em ${pathname}`)
     assert(html.includes('5541997452053'), `WhatsApp original ausente em ${pathname}`)
     const canonical = 'https://myhostvip.com' + pathname
-    const canonicalLinks = html.match(/<link\\b[^>]*rel="canonical"[^>]*>/gi) || []
+    const canonicalLinks = html.match(/<link\b[^>]*rel="canonical"[^>]*>/gi) || []
     assert.equal(canonicalLinks.length, 1, `Canonical duplicado ou ausente: ${pathname}`)
     assert(canonicalLinks[0].includes(`href="${canonical}"`), `Canonical errado: ${pathname}`)
     assert(html.includes(`content="${canonical}"`) && html.includes('property="og:url"'),
