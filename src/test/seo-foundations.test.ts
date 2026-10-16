@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
-const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), "utf8");
+const read = (path: string) => readFileSync(resolve(process.cwd(), path), "utf8");
 
 describe("compatibilidade e descoberta", () => {
   it("contém permissão explícita de busca no ChatGPT e sitemap canônico", () => {
