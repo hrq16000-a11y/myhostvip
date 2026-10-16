@@ -1,8 +1,8 @@
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Calendar, Tag } from "lucide-react";
+import { Tag } from "lucide-react";
+import { useState } from "react";
 
 const ease = [0.2, 0, 0, 1] as const;
 
@@ -13,47 +13,46 @@ const posts = [
     title: "Como escolher a melhor hospedagem para seu site",
     excerpt: "Guia completo com tudo que você precisa saber antes de contratar um serviço de hospedagem.",
     category: "Hospedagem",
-    date: "15 Mar 2026",
-    slug: "#",
+
   },
   {
     title: "10 dicas de SEO para ranquear no Google em 2026",
     excerpt: "Estratégias atualizadas de SEO para melhorar o posicionamento do seu site nos mecanismos de busca.",
     category: "SEO",
-    date: "12 Mar 2026",
-    slug: "#",
+
   },
   {
     title: "WordPress vs Site Builders: qual é melhor?",
     excerpt: "Comparativo detalhado entre WordPress e construtores de sites modernos.",
     category: "WordPress",
-    date: "10 Mar 2026",
-    slug: "#",
+
   },
   {
     title: "Como criar landing pages que convertem",
     excerpt: "Aprenda a criar páginas de captura que transformam visitantes em clientes.",
     category: "Marketing Digital",
-    date: "08 Mar 2026",
-    slug: "#",
+
   },
   {
     title: "Guia completo do cPanel para iniciantes",
     excerpt: "Tudo que você precisa saber para gerenciar seu site pelo cPanel.",
     category: "Hospedagem",
-    date: "05 Mar 2026",
-    slug: "#",
+
   },
   {
     title: "Como otimizar a velocidade do seu site WordPress",
     excerpt: "Técnicas avançadas para deixar seu WordPress ultrarrápido com LiteSpeed.",
     category: "WordPress",
-    date: "02 Mar 2026",
-    slug: "#",
+
   },
 ];
 
 const Blog = () => {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+  const visiblePosts = activeCategory === "Todos"
+    ? posts
+    : posts.filter((post) => post.category === activeCategory);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -70,22 +69,25 @@ const Blog = () => {
               Dicas e <span className="gradient-text">tutoriais</span>
             </h1>
             <p className="text-body max-w-2xl mx-auto">
-              Conteúdo atualizado sobre hospedagem, SEO, WordPress e marketing digital.
+              Conheça os temas em preparação sobre hospedagem, SEO, WordPress e marketing digital. Os artigos completos ainda não estão publicados.
             </p>
           </motion.div>
 
           {/* Categories */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
-            <button className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-medium">Todos</button>
+            <button type="button" aria-pressed={activeCategory === "Todos"} onClick={() => setActiveCategory("Todos")} className={`px-4 py-2 rounded-lg text-xs font-medium ${activeCategory === "Todos" ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>Todos</button>
             {categories.map((c) => (
-              <button key={c} className="px-4 py-2 rounded-lg bg-secondary text-muted-foreground text-xs font-medium hover:text-foreground transition-colors border border-border">
+              <button key={c} type="button" aria-pressed={activeCategory === c} onClick={() => setActiveCategory(c)} className={`px-4 py-2 rounded-lg text-xs font-medium hover:text-foreground transition-colors border border-border ${activeCategory === c ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
                 {c}
               </button>
             ))}
           </div>
 
+          <p className="text-sm text-muted-foreground mb-6 text-center" role="status">
+            {visiblePosts.length} {visiblePosts.length === 1 ? "tema" : "temas"} em preparação. Sem links para artigos inexistentes.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post, i) => (
+            {visiblePosts.map((post, i) => (
               <motion.article
                 key={post.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -102,9 +104,7 @@ const Blog = () => {
                     <span className="flex items-center gap-1 text-xs text-primary">
                       <Tag className="h-3 w-3" />{post.category}
                     </span>
-                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Calendar className="h-3 w-3" />{post.date}
-                    </span>
+                    <span className="text-xs text-muted-foreground">Em preparação</span>
                   </div>
                   <h2 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h2>
                   <p className="text-sm text-muted-foreground line-clamp-2">{post.excerpt}</p>

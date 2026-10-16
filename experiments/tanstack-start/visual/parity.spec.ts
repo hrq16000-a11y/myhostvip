@@ -31,6 +31,15 @@ async function inspect(page: Page, origin: string, path: string, size: 'desktop'
   return { h1: h1.replace(/\s+/g, ' ').trim(), text, anchors, whatsapp, headerImage }
 }
 
+// Known, deliberately corrected legacy placeholders. Keep strict text comparison
+// on commercial plan and hosting pages; changed home/contact copy is explicitly gated.
+function normalizePreviousFooter(text: string) {
+  return text
+    .replace('CNPJ: 00.000.000/0001-00 · ', '')
+    .replace('Termos de Uso', 'Solicitar Termos de Uso')
+    .replace('Política de Privacidade', 'Solicitar Política de Privacidade')
+}
+
 for (const path of pathnames) {
   test(`Visual parity: ${path} desktop`, async ({ browser }) => {
     const contexts = await Promise.all(variants.map(() =>
@@ -41,7 +50,15 @@ for (const path of pathnames) {
       expect(ssr.h1).toBe(spa.h1)
       expect(ssr.whatsapp).toBe(spa.whatsapp)
       expect(ssr.anchors).toEqual(spa.anchors)
-      expect(ssr.text).toBe(spa.text)
+      if (path === '/planos' || path === '/hospedagem') {
+        expect(ssr.text).toBe(normalizePreviousFooter(spa.text))
+      } else if (path === '/') {
+        expect(ssr.text).toContain('O que avaliar antes de escolher uma hospedagem')
+        expect(ssr.text).not.toContain('Carlos Silva')
+      } else {
+        expect(ssr.text).toContain('Continuar no WhatsApp')
+        expect(ssr.text).toContain('Nada é enviado automaticamente')
+      }
     } finally { await Promise.all(contexts.map(c => c.close())) }
   })
 }
@@ -55,6 +72,7 @@ test('Visual parity: homepage mobile', async ({ browser }) => {
     expect(ssr.h1).toBe(spa.h1)
     expect(ssr.whatsapp).toBe(spa.whatsapp)
     expect(ssr.anchors).toEqual(spa.anchors)
-    expect(ssr.text).toBe(spa.text)
+    expect(ssr.text).toContain('O que avaliar antes de escolher uma hospedagem')
+    expect(ssr.text).not.toContain('Carlos Silva')
   } finally { await Promise.all(contexts.map(c => c.close())) }
 })

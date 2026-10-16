@@ -18,8 +18,8 @@ const footerLinks = {
   Empresa: [
     { label: "Sobre Nós", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
     { label: "Contato", href: "/contato" },
-    { label: "Termos de Uso", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
-    { label: "Política de Privacidade", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
+    { label: "Solicitar Termos de Uso", href: "https://wa.me/5541997452053?text=Gostaria%20de%20consultar%20os%20Termos%20de%20Uso%20da%20MyHostVIP" },
+    { label: "Solicitar Política de Privacidade", href: "https://wa.me/5541997452053?text=Gostaria%20de%20consultar%20a%20Pol%C3%ADtica%20de%20Privacidade%20da%20MyHostVIP" },
   ],
 };
 
@@ -86,7 +86,7 @@ const Footer = () => {
             © 2026 MyHostVIP. Todos os direitos reservados.
           </p>
           <p className="text-xs text-muted-foreground">
-            CNPJ: 00.000.000/0001-00 · myhostvip.com
+            myhostvip.com
           </p>
         </div>
       </div>

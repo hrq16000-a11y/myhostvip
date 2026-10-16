@@ -75,7 +75,7 @@ try {
   for (const text of [
     'Landing Pages Ilimitadas',
     'Velocidade que faz diferença',
-    'O que nossos clientes dizem',
+    'O que avaliar antes de escolher uma hospedagem',
     'Pronto para começar',
     'Ver Planos',
   ]) {
@@ -87,7 +87,12 @@ try {
   const plans = (await fetchRoute('/planos')).html
   assert(plans.includes('Starter') && plans.includes('Profissional') && plans.includes('Business'), 'Planos reais não foram migrados')
   const contact = (await fetchRoute('/contato')).html
-  assert(contact.includes('Envie uma mensagem'), 'Conteúdo do contato original não foi migrado')
+  assert(contact.includes('Prepare sua mensagem') && contact.includes('Continuar no WhatsApp'), 'Conversão WhatsApp não entregue no HTML de contato')
+  assert(!contact.includes('Disponível 24/7') && !contact.includes('24/7/365'), 'Promessa de suporte não verificada')
+  const blog = (await fetchRoute('/blog')).html
+  assert(blog.includes('em preparação') && !blog.includes('15 Mar 2026'), 'Blog ainda anuncia artigos sem publicação')
+  assert(!home.includes('Carlos Silva'), 'Depoimento sem comprovação no HTML SSR')
+  assert(!home.includes('00.000.000/0001-00'), 'CNPJ de exemplo não pode aparecer na produção')
 
   const missing = await fetchRoute('/pagina-inexistente-verificacao-404')
   assert.equal(missing.status, 404, 'Rota inexistente NÃO retornou status HTTP 404')
