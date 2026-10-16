@@ -51,7 +51,7 @@ for (const path of pathnames) {
         expect(ssr.h1).toContain('Hospedagem rápida e poderosa')
         expect(ssr.h1).not.toContain('ilimitadas')
       } else {
-        expect(ssr.h1).toContain('Hospedagem rápida e poderosa')
+        expect(ssr.h1).toBe(spa.h1)
       }
       expect(ssr.whatsapp).toBe(spa.whatsapp)
       expect(ssr.anchors).toEqual(spa.anchors)
