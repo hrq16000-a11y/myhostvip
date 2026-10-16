@@ -30,7 +30,7 @@ const routes = [
   ['/criador-de-sites', 'Criador de Sites | MyHostVIP', 'Crie sites'],
   ['/recursos', 'Recursos de Hospedagem | MyHostVIP', 'Todos os'],
   ['/templates', 'Templates para Sites | MyHostVIP', 'Ideias de'],
-  ['/afiliados', 'Programa de Afiliados | MyHostVIP', 'Conheça possibilidades'],
+  ['/afiliados', 'Parcerias e Indicações | MyHostVIP', 'Conheça possibilidades'],
   ['/blog', 'Blog de Hospedagem e Sites | MyHostVIP', 'Dicas e'],
   ['/base-de-conhecimento', 'Base de Conhecimento | MyHostVIP', 'Base de'],
   ['/contato', 'Contato | MyHostVIP', 'Fale'],
