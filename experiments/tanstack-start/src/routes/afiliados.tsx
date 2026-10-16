@@ -3,6 +3,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import Affiliates from '../pages/Affiliates'
 
 export const Route = createFileRoute('/afiliados')({
-  head: () => seoHead('/afiliados', "Programa de Afiliados | MyHostVIP", "Conheça a proposta do programa de afiliados MyHostVIP e seus recursos."),
+  head: () => seoHead('/afiliados', "Parcerias e Indicações | MyHostVIP", "Conheça possibilidades de parceria e consulte as condições atuais diretamente com a equipe MyHostVIP."),
   component: Affiliates,
 })
