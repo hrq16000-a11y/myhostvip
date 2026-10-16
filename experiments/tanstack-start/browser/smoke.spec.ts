@@ -85,3 +85,27 @@ test('blog: only topic previews are shown and categories really filter', async (
   await page.getByRole('button', { name: 'Todos', exact: true }).click()
   await expect(page.locator('article')).toHaveCount(6)
 })
+
+test('knowledge base: search filters unpublished support topics without fake article links', async ({ page }) => {
+  await page.goto('/base-de-conhecimento')
+  const search = page.getByRole('textbox', { name: 'Buscar temas na base de conhecimento' })
+  await expect(page.getByRole('status')).toContainText('24 temas')
+  await search.fill('DNS')
+  await expect(page.getByRole('status')).toContainText('1 temas')
+  await expect(page.getByText('Como configurar DNS', { exact: true })).toBeVisible()
+  await expect(page.getByText('Como criar sua conta na MyHostVIP', { exact: true })).toHaveCount(0)
+  await search.fill('')
+  await expect(page.getByRole('status')).toContainText('24 temas')
+})
+
+test('consultation routes: templates and partnership CTAs lead to actual channels', async ({ page }) => {
+  await page.goto('/templates')
+  const templates = page.getByRole('link', { name: 'Consultar modelos disponíveis' })
+  await expect(templates).toHaveAttribute('href', '/contato')
+  await templates.click()
+  await expect(page).toHaveURL(/\/contato\/?$/)
+  await page.goto('/afiliados')
+  const partnership = page.getByRole('link', { name: 'Consultar parcerias pelo WhatsApp' })
+  await expect(partnership).toHaveAttribute('href', /wa\.me\/5541997452053\?text=/)
+  await expect(partnership).toHaveAttribute('target', '_blank')
+})
