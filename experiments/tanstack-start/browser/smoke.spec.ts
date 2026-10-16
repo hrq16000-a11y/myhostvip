@@ -29,7 +29,7 @@ test('mobile: menu navigates to contact and form inputs are editable', async ({ 
   await expect(menu).toBeVisible()
   await menu.click()
   await expect(menu).toHaveAttribute('aria-expanded', 'true')
-  await page.getByRole('link', { name: 'Contato' }).click()
+  await page.locator('#myhostvip-menu-mobile').getByRole('link', { name: 'Contato' }).click()
   await expect(page).toHaveURL(/\/contato\/?$/)
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Fale')
   await page.getByPlaceholder('Seu nome').fill('Teste de navegação')
