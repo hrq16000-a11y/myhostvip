@@ -5,13 +5,6 @@ on:
     paths:
       - 'experiments/tanstack-start/**'
       - '.github/workflows/tanstack-start-pilot.yml'
-  push:
-    branches:
-      - experiment/tanstack-start-ssr-pilot-20261016
-    paths:
-      - 'experiments/tanstack-start/**'
-      - '.github/workflows/tanstack-start-pilot.yml'
-
 permissions:
   contents: read
 
@@ -36,12 +29,8 @@ jobs:
           node-version: '22'
       - name: Install pilot dependencies (experimental lock pending)
         run: npm install --no-audit --no-fund
-      - name: Inspect TanStack dependency alignment
-        run: |
-          echo "Start manifest dependency:"
-          npm view @tanstack/react-start@1.169.2 dependencies --json
-          echo "Installed dependency tree:"
-          npm ls @tanstack/react-start @tanstack/react-router @tanstack/router-core @tanstack/start-client-core @tanstack/start-server-core || true
+      - name: Verify dependency consistency
+        run: npm ls @tanstack/react-start @tanstack/react-router @tanstack/router-core
       - name: Build SSR with Nitro
         run: npm run build
       - name: Verify real HTML responses from Node server
