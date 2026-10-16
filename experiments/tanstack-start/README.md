@@ -13,7 +13,7 @@
 
 ```sh
 cd experiments/tanstack-start
-npm install --no-audit --no-fund
+npm ci --no-audit --no-fund
 npm run build
 npm run smoke:ssr
 ```
@@ -22,7 +22,7 @@ O workflow GitHub `.github/workflows/tanstack-start-pilot.yml` executa o mesmo p
 
 ## Critérios antes de substituir o site atual
 
-1. Fixar e versionar lockfile após build reproduzível.
+1. Lockfile versionado: validar repetibilidade de `npm ci` a cada alteração de dependências.
 2. Portar páginas e componentes integralmente com comparação visual (desktop e mobile).
 3. Preservar todos os links, CTAs, WhatsApp e navegação.
 4. Garantir canonical autorreferente, metadados e schema válidos em cada URL indexável.
