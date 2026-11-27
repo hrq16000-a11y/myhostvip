@@ -1,62 +1,34 @@
-import { motion } from "framer-motion";
-import {
-  Globe, Server, Shield, Zap, Cpu, Lock, Search, HardDrive
-} from "lucide-react";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { Globe, Server, Shield, Zap, Cpu, Lock, Search, HardDrive } from "lucide-react";
 
 const benefits = [
-  { icon: Globe, title: "Landing Pages Ilimitadas", desc: "Crie quantas páginas quiser sem limites. Ideal para campanhas de marketing e anúncios." },
-  { icon: Zap, title: "WordPress em 1 Clique", desc: "Instalação automática do WordPress com Softaculous. Seu site pronto em segundos." },
-  { icon: Search, title: "SEO Automático", desc: "Ferramentas integradas de otimização para mecanismos de busca. Apareça no Google." },
-  { icon: Server, title: "LiteSpeed Ultrarrápido", desc: "Servidor web mais rápido do mercado. Até 12x mais rápido que Apache." },
-  { icon: Cpu, title: "Painel cPanel", desc: "Gerencie seu site com o painel mais popular e profissional do mundo." },
-  { icon: Lock, title: "Backups Automáticos", desc: "Seus dados protegidos com backups regulares. Restaure a qualquer momento." },
-  { icon: Shield, title: "SSL Gratuito", desc: "Certificado SSL incluso em todos os planos. Site seguro com HTTPS." },
-  { icon: HardDrive, title: "Proteção Anti-DDoS", desc: "Firewall avançado e proteção contra ataques. Seu site sempre no ar." },
+  { icon: Globe, title: "Sites e landing pages", desc: "Confirme quantidade de sites, limites de arquivos e tráfego para suas campanhas." },
+  { icon: Zap, title: "WordPress e instalação", desc: "Verifique versões e disponibilidade de instalador no plano." },
+  { icon: Search, title: "SEO", desc: "Avalie requisitos técnicos de indexação, desempenho e ferramentas disponíveis." },
+  { icon: Server, title: "LiteSpeed e cache", desc: "Confirme a tecnologia do servidor e as opções de cache." },
+  { icon: Cpu, title: "Painel de controle", desc: "Consulte como gerenciar arquivos, domínios e e-mails." },
+  { icon: Lock, title: "Backups", desc: "Pergunte pela frequência, retenção e processo de restauração." },
+  { icon: Shield, title: "SSL e HTTPS", desc: "Verifique a cobertura, renovação e configuração de certificados." },
+  { icon: HardDrive, title: "Proteção e armazenamento", desc: "Confirme cotas, proteção de infraestrutura e políticas de uso." },
 ];
 
-const Benefits = () => {
-  return (
-    <section className="py-24 bg-card/30">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease }}
-          className="text-center mb-16"
-        >
-          <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Por que escolher a MyHostVIP?</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Tudo que você precisa em um só lugar
-          </h2>
-          <p className="text-body max-w-2xl mx-auto">
-            Hospedagem completa com ferramentas profissionais para criar, gerenciar e escalar seus projetos online.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {benefits.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05, ease }}
-              className="card-vip p-6 hover-lift group"
-            >
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <f.icon className="h-5 w-5 text-primary" />
-              </div>
-              <h3 className="text-sm font-semibold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+const Benefits = () => (
+  <section className="hosting-section border-t border-border" aria-labelledby="benefits-title">
+    <div className="section-container grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+      <div>
+        <p className="hosting-eyebrow mb-3">02 / Recursos</p>
+        <h2 id="benefits-title" className="hosting-section-title mb-4">O que faz uma boa hospedagem?</h2>
+        <p className="text-body max-w-md">Use estes pontos técnicos para avaliar o plano com a equipe antes de publicar seu site.</p>
       </div>
-    </section>
-  );
-};
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 border-t border-border">
+        {benefits.map((item) => (
+          <li key={item.title} className="flex gap-3 py-5 border-b border-border">
+            <item.icon className="h-5 w-5 shrink-0 text-primary mt-1" aria-hidden="true" />
+            <div><h3 className="font-semibold mb-1">{item.title}</h3><p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
 
 export default Benefits;

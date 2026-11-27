@@ -1,56 +1,19 @@
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const ease = [0.2, 0, 0, 1] as const;
-
-const ConversionBanner = () => {
-  return (
-    <section className="py-24">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease }}
-          className="relative rounded-2xl overflow-hidden p-8 md:p-16 text-center"
-          style={{
-            background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--accent) / 0.1) 100%)',
-            border: '1px solid hsl(var(--border))'
-          }}
-        >
-          <div className="absolute inset-0 opacity-[0.04]" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)',
-            backgroundSize: '24px 24px'
-          }} />
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Pronto para começar?
-            </h2>
-            <p className="text-body max-w-xl mx-auto mb-8">
-              Junte-se a milhares de clientes que já confiam na MyHostVIP.
-              Comece hoje mesmo com nosso plano a partir de R$4,99/mês.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/planos">
-                <Button variant="hero" size="lg" className="gap-2 text-base px-8 h-12">
-                  <Zap className="h-4 w-4" />
-                  Começar Agora
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link to="/contato">
-                <Button variant="heroOutline" size="lg" className="text-base px-8 h-12">
-                  Fale Conosco
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </motion.div>
+const ConversionBanner = () => (
+  <section className="hosting-section border-t border-border" aria-labelledby="conversion-title">
+    <div className="section-container">
+      <div className="hosting-console rounded-2xl border border-border p-6 sm:p-10 lg:p-12 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div><p className="hosting-eyebrow mb-3">06 / Próximo passo</p><h2 id="conversion-title" className="hosting-section-title mb-3">Vamos colocar seu projeto online?</h2><p className="text-body max-w-xl">Compare as opções ou converse com a equipe sobre as condições para o seu site.</p></div>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button asChild variant="hero" className="h-12 hosting-press"><Link to="/planos">Ver planos <ArrowRight aria-hidden="true"/></Link></Button>
+          <Button asChild variant="heroOutline" className="h-12 hosting-press"><Link to="/contato"><MessageCircle aria-hidden="true"/> Fale conosco</Link></Button>
+        </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default ConversionBanner;

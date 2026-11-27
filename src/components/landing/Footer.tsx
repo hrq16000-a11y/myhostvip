@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Lock, Zap } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 import logo from "@/assets/logo-myhostvip.png";
 
 const footerLinks = {
@@ -16,39 +16,26 @@ const footerLinks = {
     { label: "Programa de Afiliados", href: "/afiliados" },
   ],
   Empresa: [
-    { label: "Sobre Nós", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
+    { label: "Sobre a MyHostVIP (consulta)", href: "/contato" },
     { label: "Contato", href: "/contato" },
-    { label: "Termos de Uso", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
-    { label: "Política de Privacidade", href: "https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" },
+    { label: "Solicitar termos de uso", href: WHATSAPP_URL },
+    { label: "Solicitar política de privacidade", href: WHATSAPP_URL },
   ],
 };
-
-const badges = [
-  { icon: Shield, label: "SSL Grátis" },
-  { icon: Lock, label: "Anti-DDoS" },
-  { icon: Zap, label: "LiteSpeed" },
-];
 
 const Footer = () => {
   return (
     <footer className="border-t border-border bg-card/50">
-      <div className="section-container py-16">
+      <div className="section-container pt-12 pb-24 sm:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <Link to="/" className="flex items-center mb-4">
               <img src={logo} alt="MyHostVIP" className="h-9" />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              Hospedagem profissional com performance SSD, LiteSpeed e suporte WordPress completo.
+              Hospedagem para sites e landing pages. Consulte os recursos e condições do plano antes de contratar.
             </p>
-            <div className="flex gap-3">
-              {badges.map((b) => (
-                <div key={b.label} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-secondary text-xs text-muted-foreground">
-                  <b.icon className="h-3 w-3 text-primary" />
-                  {b.label}
-                </div>
-              ))}
-            </div>
+
           </div>
 
           {Object.entries(footerLinks).map(([title, links]) => (
@@ -86,7 +73,7 @@ const Footer = () => {
             © 2026 MyHostVIP. Todos os direitos reservados.
           </p>
           <p className="text-xs text-muted-foreground">
-            CNPJ: 00.000.000/0001-00 · myhostvip.com
+            MyHostVIP · Informações comerciais sob consulta
           </p>
         </div>
       </div>

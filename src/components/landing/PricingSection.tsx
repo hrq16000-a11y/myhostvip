@@ -1,149 +1,75 @@
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Check, Zap, Star, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { hostingPlans } from "@/lib/hosting-plans";
+import { WHATSAPP_URL } from "@/lib/whatsapp";
 
-const ease = [0.2, 0, 0, 1] as const;
-
-const plans = [
-  {
-    name: "Starter",
-    price: "4,99",
-    icon: Zap,
-    popular: false,
-    features: [
-      "1 GB de espaço SSD",
-      "Landing pages ilimitadas",
-      "WordPress",
-      "SSL gratuito",
-      "Painel cPanel",
-      "Instalador de aplicativos",
-      "SEO automático",
-      "Suporte técnico",
-    ],
-  },
-  {
-    name: "Profissional",
-    price: "29,99",
-    icon: Star,
-    popular: true,
-    features: [
-      "5 GB SSD",
-      "Landing pages ilimitadas",
-      "WordPress ilimitado",
-      "Painel administrativo completo",
-      "Softaculous",
-      "SSL gratuito",
-      "Backups automáticos",
-      "LiteSpeed",
-      "SEO automático",
-    ],
-  },
-  {
-    name: "Business",
-    price: "69,99",
-    icon: Crown,
-    popular: false,
-    features: [
-      "10 GB SSD",
-      "Landing pages ilimitadas",
-      "WordPress ilimitado",
-      "LiteSpeed premium",
-      "Backups diários",
-      "Painel administrativo completo",
-      "Instalador automático",
-      "SSL ilimitado",
-      "Suporte prioritário",
-    ],
-  },
-];
-
-const PricingSection = () => {
-  return (
-    <section className="py-24 bg-card/30" id="planos">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease }}
-          className="text-center mb-16"
-        >
-          <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Planos</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Escolha o plano ideal para você
-          </h2>
-          <p className="text-body max-w-2xl mx-auto">
-            Todos os planos incluem landing pages ilimitadas, WordPress e SSL gratuito.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease }}
-              className={`rounded-xl p-6 hover-lift relative ${
-                plan.popular
-                  ? "gradient-border bg-card"
-                  : "card-vip"
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                  Mais Popular
-                </div>
-              )}
-
-              <div className="text-center mb-6 pt-2">
-                <plan.icon className="h-8 w-8 text-primary mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-foreground mb-2">{plan.name}</h3>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-sm text-muted-foreground">R$</span>
-                  <span className="text-4xl font-extrabold text-foreground">{plan.price}</span>
-                  <span className="text-sm text-muted-foreground">/mês</span>
-                </div>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <Link to="/planos">
-                <Button
-                  variant={plan.popular ? "hero" : "heroOutline"}
-                  className="w-full"
-                >
-                  Começar Agora
-                </Button>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Guarantee */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3, ease }}
-          className="mt-12 text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border text-sm text-muted-foreground">
-            🛡️ Garantia de 30 dias ou seu dinheiro de volta
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
+const inquiryUrl = (name: string) => {
+  const url = new URL(WHATSAPP_URL);
+  url.searchParams.set("text", `Olá! Gostaria de confirmar preço, recursos e condições do plano ${name} da MyHostVIP.`);
+  return url.toString();
 };
+
+export function PlanCards({ full = false, selected }: { full?: boolean; selected?: string | null }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
+      {hostingPlans.map((plan, index) => (
+        <article key={plan.id} id={full ? `plano-${plan.id}` : undefined}
+          className={`hosting-plan-card rounded-xl border p-5 lg:p-7 min-w-0 flex flex-col ${selected === plan.id ? "border-primary bg-primary/[0.06]" : "border-border bg-card/80"}`}>
+          <div className="flex justify-between items-center gap-2 mb-5">
+            <span className="text-xs text-muted-foreground font-mono-data">0{index + 1} / HOSPEDAGEM</span>
+            <plan.icon className="h-5 w-5 text-primary" aria-hidden="true" />
+          </div>
+          {full ? <h2 className="font-semibold text-2xl tracking-tight">{plan.name}</h2> : <h3 className="font-semibold text-2xl tracking-tight">{plan.name}</h3>}
+          <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{plan.description}</p>
+          <div className="mt-6 mb-5">
+            <p className="text-xs text-muted-foreground">Valor de referência</p>
+            <p className="font-semibold tracking-tight flex flex-wrap items-baseline gap-1 mt-1"><span className="text-lg">R$</span> <span className="text-4xl font-bold tabular-nums">{plan.price}</span> <span className="text-sm text-muted-foreground font-normal">/mês</span></p>
+          </div>
+          <dl className="border-y border-border py-3 space-y-3 mb-5 text-sm">
+            <div className="flex items-start justify-between gap-2"><dt className="text-muted-foreground">Armazenamento</dt><dd className="font-medium text-right">{plan.storage}</dd></div>
+            <div className="flex items-start justify-between gap-2"><dt className="text-muted-foreground">E-mail</dt><dd className="font-medium text-right">{plan.email}</dd></div>
+          </dl>
+          {full && <details className="mb-5 border-b border-border pb-3">
+            <summary className="group flex items-center justify-between gap-2 cursor-pointer min-h-11 text-sm font-medium list-none">
+              Outros recursos a confirmar <ChevronDown className="h-4 w-4 shrink-0 group-open:rotate-180 transition-transform duration-150" aria-hidden="true"/>
+            </summary>
+            <ul className="text-sm text-muted-foreground leading-relaxed space-y-2 pb-2 pl-4 list-disc">
+              {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
+            </ul>
+          </details>}
+          <div className="mt-auto">
+            {selected === plan.id && <p className="text-xs font-medium text-primary mb-3">Opção que você selecionou</p>}
+            {full ? (
+              <Button asChild variant={selected === plan.id ? "hero" : "heroOutline"} className="w-full min-h-11 hosting-press whitespace-normal">
+                <a href={inquiryUrl(plan.name)} target="_blank" rel="noopener noreferrer" aria-label={`Consultar plano ${plan.name} pelo WhatsApp`}><MessageCircle aria-hidden="true" /> Consultar plano</a>
+              </Button>
+            ) : (
+              <Button asChild variant="heroOutline" className="w-full min-h-11 hosting-press">
+                <Link to={`/planos?plano=${plan.id}`} aria-label={`Ver plano ${plan.name}`}>Ver plano <ArrowRight aria-hidden="true" /></Link>
+              </Button>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+const PricingSection = () => (
+  <section className="hosting-section border-t border-border bg-card/20" id="planos" aria-labelledby="pricing-title">
+    <div className="section-container">
+      <div className="grid gap-4 lg:grid-cols-[1fr_0.64fr] lg:items-end mb-8">
+        <div><p className="hosting-eyebrow mb-3">01 / Planos</p><h2 id="pricing-title" className="hosting-section-title">Compare antes de contratar.</h2></div>
+        <p className="text-body">Três opções da apresentação anterior para diferentes cenários. Valores, recursos e limites sujeitos à confirmação.</p>
+      </div>
+      <PlanCards />
+      <div className="mt-5 flex flex-wrap items-center gap-4 justify-between text-sm text-muted-foreground">
+        <span>Confirme condições, renovação e disponibilidade com a equipe.</span>
+        <Link to="/planos" className="text-primary min-h-11 inline-flex gap-2 items-center font-semibold hover:underline">Ver comparação completa <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+      </div>
+    </div>
+  </section>
+);
 
 export default PricingSection;
