@@ -1,74 +1,24 @@
-import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const ease = [0.2, 0, 0, 1] as const;
-
-const testimonials = [
-  {
-    name: "Carlos Silva",
-    role: "Empreendedor Digital",
-    text: "Criei meu site em minutos e já estou recebendo clientes. A hospedagem é muito rápida e o suporte é excelente!",
-  },
-  {
-    name: "Ana Rodrigues",
-    role: "Designer Freelancer",
-    text: "O melhor custo-benefício que encontrei. Landing pages ilimitadas e WordPress funcionando perfeitamente.",
-  },
-  {
-    name: "Marcos Oliveira",
-    role: "Agência de Marketing",
-    text: "Migramos 50 sites para a MyHostVIP e a performance melhorou absurdamente. LiteSpeed faz toda a diferença.",
-  },
-  {
-    name: "Juliana Costa",
-    role: "E-commerce",
-    text: "O SSL gratuito e a proteção DDoS me dão total segurança. Recomendo para qualquer negócio online.",
-  },
-];
-
-const Testimonials = () => {
-  return (
-    <section className="py-24">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease }}
-          className="text-center mb-16"
-        >
-          <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Depoimentos</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            O que nossos clientes dizem
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              className="card-vip p-6 hover-lift"
-            >
-              <div className="flex gap-1 mb-3">
-                {Array.from({ length: 5 }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-sm text-foreground leading-relaxed mb-4">"{t.text}"</p>
-              <div>
-                <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+// No verified testimonial source was found in the commercial matrix.
+// Keep the section useful without presenting unverified reviews as fact.
+const DecisionGuide = () => (
+  <section className="hosting-section border-t border-border bg-card/20" aria-labelledby="guide-title">
+    <div className="section-container grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
+      <div><p className="hosting-eyebrow mb-3">05 / Confiança</p><h2 id="guide-title" className="hosting-section-title mb-4">Escolha com clareza.</h2><p className="text-body">Perguntas que vale fazer antes de contratar uma hospedagem.</p></div>
+      <div className="divide-y divide-border border-y border-border">
+        {[
+          { q: "Qual plano atende meu projeto?", a: "Compare recursos, armazenamento, e-mails e os limites de cada opção com a equipe." },
+          { q: "Como funciona a migração?", a: "Consulte se a migração está disponível e quais são os prazos, requisitos e custos envolvidos." },
+          { q: "Como confirmar segurança e suporte?", a: "Solicite as condições de SSL, backups, disponibilidade e atendimento antes de assinar." },
+        ].map((item) => (
+          <details key={item.q} className="py-3"><summary className="cursor-pointer font-semibold min-h-11 py-3">{item.q}</summary><p className="text-sm text-muted-foreground leading-relaxed mb-3">{item.a}</p></details>
+        ))}
+        <Link to="/base-de-conhecimento" className="min-h-11 py-3 text-primary inline-flex items-center gap-2 font-semibold text-sm hover:underline">Consultar base de conhecimento <ArrowRight className="w-4 h-4" aria-hidden="true"/></Link>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
-export default Testimonials;
+export default DecisionGuide;

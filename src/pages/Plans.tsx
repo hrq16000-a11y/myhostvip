@@ -1,156 +1,33 @@
+import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { motion } from "framer-motion";
+import { PlanCards } from "@/components/landing/PricingSection";
 import { Button } from "@/components/ui/button";
-import { Check, Zap, Star, Crown } from "lucide-react";
-
-const ease = [0.2, 0, 0, 1] as const;
-
-const plans = [
-  {
-    name: "Starter",
-    price: "4,99",
-    icon: Zap,
-    popular: false,
-    desc: "Ideal para quem está começando e precisa de uma hospedagem confiável.",
-    features: [
-      "1 GB de espaço SSD",
-      "Landing pages ilimitadas",
-      "WordPress",
-      "SSL gratuito",
-      "Painel cPanel",
-      "Instalador de aplicativos",
-      "SEO automático",
-      "Suporte técnico",
-      "1 conta de email",
-      "Tráfego ilimitado",
-    ],
-  },
-  {
-    name: "Profissional",
-    price: "29,99",
-    icon: Star,
-    popular: true,
-    desc: "Para profissionais e pequenas empresas que precisam de mais recursos.",
-    features: [
-      "5 GB SSD",
-      "Landing pages ilimitadas",
-      "WordPress ilimitado",
-      "Painel administrativo completo",
-      "Softaculous",
-      "SSL gratuito",
-      "Backups automáticos",
-      "LiteSpeed",
-      "SEO automático",
-      "10 contas de email",
-      "Tráfego ilimitado",
-      "Subdomínios ilimitados",
-    ],
-  },
-  {
-    name: "Business",
-    price: "69,99",
-    icon: Crown,
-    popular: false,
-    desc: "Para empresas que exigem máxima performance e suporte dedicado.",
-    features: [
-      "10 GB SSD",
-      "Landing pages ilimitadas",
-      "WordPress ilimitado",
-      "LiteSpeed premium",
-      "Backups diários",
-      "Painel administrativo completo",
-      "Instalador automático",
-      "SSL ilimitado",
-      "Suporte prioritário",
-      "Email ilimitado",
-      "Tráfego ilimitado",
-      "CloudLinux",
-      "Firewall avançado",
-    ],
-  },
-];
+import { ArrowRight } from "lucide-react";
+import { hostingPlans } from "@/lib/hosting-plans";
 
 const Plans = () => {
+  const [search] = useSearchParams();
+  const selectedPlan = hostingPlans.find((p) => p.id === search.get("plano"));
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <section className="pt-28 pb-24">
+      <main className="pt-28 pb-20">
         <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            className="text-center mb-16"
-          >
-            <p className="text-xs font-mono-data text-primary tracking-widest uppercase mb-3">Planos e Preços</p>
-            <h1 className="text-display mb-4">
-              Hospedagem para <span className="gradient-text">todo projeto</span>
-            </h1>
-            <p className="text-body max-w-2xl mx-auto">
-              Do site pessoal ao e-commerce, temos o plano perfeito para você. 
-              Todos os planos incluem SSL grátis e landing pages ilimitadas.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {plans.map((plan, i) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease }}
-                className={`rounded-xl p-6 hover-lift relative ${
-                  plan.popular ? "gradient-border bg-card" : "card-vip"
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                    Mais Popular
-                  </div>
-                )}
-                <div className="text-center mb-6 pt-2">
-                  <plan.icon className="h-10 w-10 text-primary mx-auto mb-3" />
-                  <h2 className="text-xl font-bold text-foreground mb-1">{plan.name}</h2>
-                  <p className="text-xs text-muted-foreground mb-4">{plan.desc}</p>
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-sm text-muted-foreground">R$</span>
-                    <span className="text-5xl font-extrabold text-foreground">{plan.price}</span>
-                    <span className="text-sm text-muted-foreground">/mês</span>
-                  </div>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a href="https://wa.me/5541997452053?text=quero%20uma%20hospedagem%20de%20sites" target="_blank" rel="noopener noreferrer" className="w-full">
-                  <Button variant={plan.popular ? "hero" : "heroOutline"} className="w-full">
-                    Assinar Agora
-                  </Button>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease }}
-            className="mt-16 text-center space-y-4"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border text-sm text-muted-foreground">
-              🛡️ Garantia de 30 dias ou seu dinheiro de volta
+          <p className="hosting-eyebrow mb-4">Planos e preços / MyHostVIP</p>
+          <h1 className="text-display max-w-4xl mb-5">Hospedagem para <span className="text-primary">cada tipo de projeto.</span></h1>
+          <p className="text-body max-w-3xl mb-8">Compare Starter, Profissional e Business. Os preços, capacidades e recursos abaixo são referências da apresentação anterior, não ofertas contratuais confirmadas.</p>
+          {selectedPlan && <div className="mb-5 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-primary/40 bg-primary/[0.06] px-4 py-2 text-sm"><p className="text-foreground">Opção selecionada: <strong>{selectedPlan.name}</strong></p><a href={`#plano-${selectedPlan.id}`} className="inline-flex min-h-11 items-center gap-2 font-semibold text-primary hover:underline">Ir ao plano <ArrowRight className="w-4 h-4" aria-hidden="true" /></a></div>}
+          <PlanCards full selected={selectedPlan?.id} />
+          <aside className="mt-8 border border-border rounded-xl p-5 sm:p-7 grid md:grid-cols-[1fr_auto] gap-4 md:items-center">
+            <div>
+              <h2 className="font-semibold text-lg">Antes de escolher</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-2">Confirme vigência, preço de renovação, migração, taxas, limites, suporte e política de cancelamento. A consulta não cria uma assinatura.</p>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Todos os planos incluem migração gratuita. Sem taxas ocultas.
-            </p>
-          </motion.div>
+            <Button asChild variant="hero" className="min-h-11 hosting-press"><Link to="/contato">Tirar dúvidas <ArrowRight aria-hidden="true" /></Link></Button>
+          </aside>
         </div>
-      </section>
+      </main>
       <Footer />
     </div>
   );
